@@ -5,6 +5,8 @@ How to use:
 
 Make sure that you have git installed and use "git clone https://github.com/0xAresDev/ForumAISDK.git" to clone the repo.
 
+Install the required packages with _pip3 install -r ForumAISDK/requirements.txt_
+
 In a python file:
 
 `from ForumAISDK.ModelMarketSDK.ModelMarket import GPT4ModelMarket
