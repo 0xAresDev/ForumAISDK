@@ -2,10 +2,17 @@ from web3 import Web3
 import json
 import time
 import requests
-import random, string
+import random
+import string
 import os
 
+
+"""
+Easy way to implement the GPT4-Turbo model market
+"""
 class GPT4ModelMarket:
+
+    # Initialize the model market and make all the connections
     def __init__(self, private_key, public_key):
         self.rpc = "https://testnet.skalenodes.com/v1/aware-fake-trim-testnet"
         self.web3 = Web3(Web3.HTTPProvider(self.rpc))
@@ -27,15 +34,19 @@ class GPT4ModelMarket:
         self.forumUSD = self.web3.eth.contract(address="0x67fB809D3c4d265898B2ca6108bd6fe01B89858d", abi=abi)
         print("Initialized!")
 
+    # returns all the nodes
     def get_hosts(self):
         return self.llm_market.functions.getHosts().call()
 
+    # checks if a node is currently paused
     def get_paused(self, host_address):
         return self.llm_market.functions.getPaused(host_address).call()
 
+    # returns the usd token balance of a given address
     def get_token_balance(self, address):
         return self.forumUSD.functions.balanceOf(address).call()
 
+    # mints the usd token (note: only a testnet functionality)
     def mint_token(self):
         unsent_minting_tx = self.forumUSD.functions.mint().build_transaction({
             "from": self.public_key,
@@ -50,6 +61,7 @@ class GPT4ModelMarket:
         tx_receipt = self.web3.eth.get_transaction_receipt(tx_hash)
         return tx_receipt
 
+    # add a request on the chain
     def add_request_on_chain(self, unique_code, host_address, value):
         unsent_token_approval_tx = self.forumUSD.functions.approve(self.llm_market.address, value).build_transaction({
             "from": self.public_key,
@@ -75,10 +87,12 @@ class GPT4ModelMarket:
         tx_receipt = self.web3.eth.get_transaction_receipt(tx_hash)
         return tx_receipt
 
+    # generates an unique code
     @staticmethod
     def generate_unique_code():
         return int(''.join(random.choices(string.digits, k=10)))
 
+    # sends the chat to the node
     def create_completion(self, chat, node_url, unique_code):
 
         data = {
@@ -88,11 +102,21 @@ class GPT4ModelMarket:
         resp = requests.post(node_url + "ai/create/", json=data)
         return resp.json().get("result")
 
+    # gets the response from the node
     def get_completion(self, node_url, result_code):
         resp = requests.get(node_url + "ai/get/" + result_code)
         return resp.json().get("content")
 
-    def generate(self, total_output_tokens, chat):
+    def generate(self, total_output_tokens, chat) -> str:
+        """
+        Generates AI response based on the chat and with max total_output_tokens tokens.
+
+        Args:
+            total_output_tokens - int, max number of output tokens of AI response, also influences max number of input chars
+            chat - list [{"role": "user", "content": "Lorem ipsum"}, ...], represents the input chat
+        Return:
+            string - generated output
+        """
         node = None
         c = 0
         while not node:

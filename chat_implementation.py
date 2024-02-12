@@ -1,8 +1,13 @@
 import os
-
 from ModelMarketSDK.ModelMarket import GPT4ModelMarket
 from dotenv import load_dotenv, find_dotenv
 
+"""
+Simple demonstration of how easy it is to implement model markets!
+"""
+
+
+# load keys
 load_dotenv(find_dotenv())
 
 model_market = GPT4ModelMarket(os.environ.get("PRIVATE_KEY"), os.environ.get("PUBLIC_KEY"))
