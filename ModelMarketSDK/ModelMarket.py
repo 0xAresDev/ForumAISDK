@@ -3,24 +3,29 @@ import json
 import time
 import requests
 import random, string
-
+import os
 
 class GPT4ModelMarket:
     def __init__(self, private_key, public_key):
         self.rpc = "https://testnet.skalenodes.com/v1/aware-fake-trim-testnet"
         self.web3 = Web3(Web3.HTTPProvider(self.rpc))
-        f = open('ModelMarketSDK/LLMMarket.json')
+        script_dir = os.path.dirname(__file__)  # Get the script's directory
+        file_path = os.path.join(script_dir, "LLMMarket.json")
+        f = open(file_path)
         data = json.load(f)
         f.close()
         abi = data["abi"]
         self.llm_market = self.web3.eth.contract(address="0xf89e454558717f19926ce66E0EAEF533646d20B0", abi=abi)
         self.private_key = private_key
         self.public_key = public_key
-        f = open('ModelMarketSDK/ForumUSD.json')
+        script_dir = os.path.dirname(__file__)  # Get the script's directory
+        file_path = os.path.join(script_dir, "ForumUSD.json")
+        f = open(file_path)
         data = json.load(f)
         f.close()
         abi = data["abi"]
         self.forumUSD = self.web3.eth.contract(address="0x67fB809D3c4d265898B2ca6108bd6fe01B89858d", abi=abi)
+        print("Initialized!")
 
     def get_hosts(self):
         return self.llm_market.functions.getHosts().call()
