@@ -9,13 +9,13 @@ Install the required packages with _pip3 install -r ForumAISDK/requirements.txt_
 
 In a python file:
 
-`from ForumAISDK.ModelMarketSDK.ModelMarket import GPT4ModelMarket
+from ForumAISDK.ModelMarketSDK.ModelMarket import GPT4ModelMarket
 
 model_market = GPT4ModelMarket(PRIVATE_KEY, PUBLIC_KEY)
 
 chat = [{"role": "system", "content": "You are a helpful coding assistant"}, {"role": "user", "content": "What is 2 +2?"}]
 
-resp = model_market.generate(1000, chat)`
+resp = model_market.generate(1000, chat)
 
 Replace PRIVATE_KEY and PUBLIC_KEY with your keys.
 
