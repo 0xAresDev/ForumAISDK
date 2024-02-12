@@ -1,0 +1,9795 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "allowance",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "needed",
+          "type": "uint256"
+        }
+      ],
+      "name": "ERC20InsufficientAllowance",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "balance",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "needed",
+          "type": "uint256"
+        }
+      ],
+      "name": "ERC20InsufficientBalance",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "approver",
+          "type": "address"
+        }
+      ],
+      "name": "ERC20InvalidApprover",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        }
+      ],
+      "name": "ERC20InvalidReceiver",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "ERC20InvalidSender",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        }
+      ],
+      "name": "ERC20InvalidSpender",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        }
+      ],
+      "name": "allowance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "mint",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "allSourcePaths": {
+    "0": "/home/cedric/.brownie/packages/OpenZeppelin/openzeppelin-contracts@5.0.1/contracts/interfaces/draft-IERC6093.sol",
+    "1": "/home/cedric/.brownie/packages/OpenZeppelin/openzeppelin-contracts@5.0.1/contracts/token/ERC20/ERC20.sol",
+    "2": "/home/cedric/.brownie/packages/OpenZeppelin/openzeppelin-contracts@5.0.1/contracts/token/ERC20/IERC20.sol",
+    "3": "/home/cedric/.brownie/packages/OpenZeppelin/openzeppelin-contracts@5.0.1/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+    "4": "/home/cedric/.brownie/packages/OpenZeppelin/openzeppelin-contracts@5.0.1/contracts/utils/Context.sol",
+    "5": "contracts/PaymentToken.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/PaymentToken.sol",
+    "exportedSymbols": {
+      "ERC20": [
+        539
+      ],
+      "ForumUSD": [
+        24
+      ]
+    },
+    "id": 25,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.8",
+          ".2",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:31:5"
+      },
+      {
+        "absolutePath": "/home/cedric/.brownie/packages/OpenZeppelin/openzeppelin-contracts@5.0.1/contracts/token/ERC20/ERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "id": 3,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 25,
+        "sourceUnit": 540,
+        "src": "33:68:5",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 2,
+              "name": "ERC20",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 539,
+              "src": "41:5:5",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 4,
+              "name": "ERC20",
+              "nameLocations": [
+                "124:5:5"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 539,
+              "src": "124:5:5"
+            },
+            "id": 5,
+            "nodeType": "InheritanceSpecifier",
+            "src": "124:5:5"
+          }
+        ],
+        "canonicalName": "ForumUSD",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 24,
+        "linearizedBaseContracts": [
+          24,
+          539,
+          581,
+          780,
+          754,
+          810
+        ],
+        "name": "ForumUSD",
+        "nameLocation": "112:8:5",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 12,
+              "nodeType": "Block",
+              "src": "177:2:5",
+              "statements": []
+            },
+            "id": 13,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "hexValue": "466f72756d555344",
+                    "id": 8,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "string",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "157:10:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_stringliteral_7f1b9ee27d6d5d1d11652d43a6471aa6a18adbcffeec56e001039166cb2bb976",
+                      "typeString": "literal_string \"ForumUSD\""
+                    },
+                    "value": "ForumUSD"
+                  },
+                  {
+                    "hexValue": "46555344",
+                    "id": 9,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "string",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "169:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_stringliteral_22e5102803e35245858a02168c0507cbfa9ab1c71ef04ff373f8798dc16b259c",
+                      "typeString": "literal_string \"FUSD\""
+                    },
+                    "value": "FUSD"
+                  }
+                ],
+                "id": 10,
+                "kind": "baseConstructorSpecifier",
+                "modifierName": {
+                  "id": 7,
+                  "name": "ERC20",
+                  "nameLocations": [
+                    "151:5:5"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 539,
+                  "src": "151:5:5"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "151:25:5"
+              }
+            ],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "148:2:5"
+            },
+            "returnParameters": {
+              "id": 11,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "177:0:5"
+            },
+            "scope": 24,
+            "src": "137:42:5",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 22,
+              "nodeType": "Block",
+              "src": "209:43:5",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 17,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": -15,
+                          "src": "225:3:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 18,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "229:6:5",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "225:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "hexValue": "35",
+                        "id": 19,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "237:7:5",
+                        "subdenomination": "ether",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_5000000000000000000_by_1",
+                          "typeString": "int_const 5000000000000000000"
+                        },
+                        "value": "5"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_rational_5000000000000000000_by_1",
+                          "typeString": "int_const 5000000000000000000"
+                        }
+                      ],
+                      "id": 16,
+                      "name": "_mint",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 379,
+                      "src": "219:5:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,uint256)"
+                      }
+                    },
+                    "id": 20,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "219:26:5",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 21,
+                  "nodeType": "ExpressionStatement",
+                  "src": "219:26:5"
+                }
+              ]
+            },
+            "functionSelector": "1249c58b",
+            "id": 23,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "mint",
+            "nameLocation": "194:4:5",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 14,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "198:2:5"
+            },
+            "returnParameters": {
+              "id": 15,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "209:0:5"
+            },
+            "scope": 24,
+            "src": "185:67:5",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 25,
+        "src": "103:152:5",
+        "usedErrors": [
+          551,
+          556,
+          561,
+          570,
+          575,
+          580
+        ],
+        "usedEvents": [
+          688,
+          697
+        ]
+      }
+    ],
+    "src": "0:255:5"
+  },
+  "bytecode": "608060405234801561001057600080fd5b5060405180604001604052806008815260200167119bdc9d5b5554d160c21b81525060405180604001604052806004815260200163119554d160e21b815250816003908161005e9190610114565b50600461006b8282610114565b5050506101d3565b634e487b7160e01b600052604160045260246000fd5b600181811c9082168061009d57607f821691505b6020821081036100bd57634e487b7160e01b600052602260045260246000fd5b50919050565b601f82111561010f576000816000526020600020601f850160051c810160208610156100ec5750805b601f850160051c820191505b8181101561010b578281556001016100f8565b5050505b505050565b81516001600160401b0381111561012d5761012d610073565b6101418161013b8454610089565b846100c3565b602080601f831160018114610176576000841561015e5750858301515b600019600386901b1c1916600185901b17855561010b565b600085815260208120601f198616915b828110156101a557888601518255948401946001909101908401610186565b50858210156101c35787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b610784806101e26000396000f3fe608060405234801561001057600080fd5b506004361061009e5760003560e01c8063313ce56711610066578063313ce5671461011357806370a082311461012257806395d89b411461014b578063a9059cbb14610153578063dd62ed3e1461016657600080fd5b806306fdde03146100a3578063095ea7b3146100c15780631249c58b146100e457806318160ddd146100ee57806323b872dd14610100575b600080fd5b6100ab61019f565b6040516100b891906105cd565b60405180910390f35b6100d46100cf366004610638565b610231565b60405190151581526020016100b8565b6100ec61024b565b005b6002545b6040519081526020016100b8565b6100d461010e366004610662565b61025f565b604051601281526020016100b8565b6100f261013036600461069e565b6001600160a01b031660009081526020819052604090205490565b6100ab610283565b6100d4610161366004610638565b610292565b6100f26101743660046106c0565b6001600160a01b03918216600090815260016020908152604080832093909416825291909152205490565b6060600380546101ae906106f3565b80601f01602080910402602001604051908101604052809291908181526020018280546101da906106f3565b80156102275780601f106101fc57610100808354040283529160200191610227565b820191906000526020600020905b81548152906001019060200180831161020a57829003601f168201915b5050505050905090565b60003361023f8185856102a0565b60019150505b92915050565b61025d33674563918244f400006102b2565b565b60003361026d8582856102f1565b61027885858561036f565b506001949350505050565b6060600480546101ae906106f3565b60003361023f81858561036f565b6102ad83838360016103ce565b505050565b6001600160a01b0382166102e15760405163ec442f0560e01b8152600060048201526024015b60405180910390fd5b6102ed600083836104a3565b5050565b6001600160a01b038381166000908152600160209081526040808320938616835292905220546000198114610369578181101561035a57604051637dc7a0d960e11b81526001600160a01b038416600482015260248101829052604481018390526064016102d8565b610369848484840360006103ce565b50505050565b6001600160a01b03831661039957604051634b637e8f60e11b8152600060048201526024016102d8565b6001600160a01b0382166103c35760405163ec442f0560e01b8152600060048201526024016102d8565b6102ad8383836104a3565b6001600160a01b0384166103f85760405163e602df0560e01b8152600060048201526024016102d8565b6001600160a01b03831661042257604051634a1406b160e11b8152600060048201526024016102d8565b6001600160a01b038085166000908152600160209081526040808320938716835292905220829055801561036957826001600160a01b0316846001600160a01b03167f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b9258460405161049591815260200190565b60405180910390a350505050565b6001600160a01b0383166104ce5780600260008282546104c3919061072d565b909155506105409050565b6001600160a01b038316600090815260208190526040902054818110156105215760405163391434e360e21b81526001600160a01b038516600482015260248101829052604481018390526064016102d8565b6001600160a01b03841660009081526020819052604090209082900390555b6001600160a01b03821661055c5760028054829003905561057b565b6001600160a01b03821660009081526020819052604090208054820190555b816001600160a01b0316836001600160a01b03167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef836040516105c091815260200190565b60405180910390a3505050565b60006020808352835180602085015260005b818110156105fb578581018301518582016040015282016105df565b506000604082860101526040601f19601f8301168501019250505092915050565b80356001600160a01b038116811461063357600080fd5b919050565b6000806040838503121561064b57600080fd5b6106548361061c565b946020939093013593505050565b60008060006060848603121561067757600080fd5b6106808461061c565b925061068e6020850161061c565b9150604084013590509250925092565b6000602082840312156106b057600080fd5b6106b98261061c565b9392505050565b600080604083850312156106d357600080fd5b6106dc8361061c565b91506106ea6020840161061c565b90509250929050565b600181811c9082168061070757607f821691505b60208210810361072757634e487b7160e01b600052602260045260246000fd5b50919050565b8082018082111561024557634e487b7160e01b600052601160045260246000fdfea2646970667358221220be8d200eddfa9b8230721ed948a6065a55581fc6331d25951891c9d7f46cc1d364736f6c63430008170033",
+  "bytecodeSha1": "bae4284d5c10b331fd3e992d967a957177b6dfc5",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "version": "0.8.23+commit.f704f362"
+  },
+  "contractName": "ForumUSD",
+  "coverageMap": {
+    "branches": {
+      "0": {},
+      "1": {
+        "ERC20._approve": {
+          "37": [
+            10061,
+            10080,
+            false
+          ],
+          "38": [
+            10159,
+            10180,
+            false
+          ]
+        },
+        "ERC20._mint": {
+          "32": [
+            7791,
+            7812,
+            false
+          ]
+        },
+        "ERC20._spendAllowance": {
+          "33": [
+            10828,
+            10865,
+            false
+          ],
+          "34": [
+            10885,
+            10909,
+            false
+          ]
+        },
+        "ERC20._transfer": {
+          "35": [
+            5739,
+            5757,
+            false
+          ],
+          "36": [
+            5834,
+            5850,
+            false
+          ]
+        },
+        "ERC20._update": {
+          "39": [
+            6360,
+            6378,
+            false
+          ],
+          "40": [
+            6603,
+            6622,
+            false
+          ],
+          "41": [
+            6910,
+            6926,
+            false
+          ]
+        }
+      },
+      "2": {},
+      "3": {},
+      "4": {},
+      "5": {}
+    },
+    "statements": {
+      "0": {},
+      "1": {
+        "ERC20._approve": {
+          "14": [
+            9073,
+            9110
+          ],
+          "22": [
+            10057,
+            10146
+          ],
+          "23": [
+            10155,
+            10245
+          ],
+          "24": [
+            10254,
+            10289
+          ],
+          "25": [
+            10328,
+            10364
+          ]
+        },
+        "ERC20._mint": {
+          "15": [
+            7787,
+            7878
+          ],
+          "16": [
+            7887,
+            7922
+          ]
+        },
+        "ERC20._spendAllowance": {
+          "17": [
+            10881,
+            11011
+          ],
+          "18": [
+            11052,
+            11109
+          ]
+        },
+        "ERC20._transfer": {
+          "19": [
+            5735,
+            5821
+          ],
+          "20": [
+            5830,
+            5916
+          ],
+          "21": [
+            5925,
+            5949
+          ]
+        },
+        "ERC20._update": {
+          "26": [
+            6496,
+            6517
+          ],
+          "27": [
+            6599,
+            6714
+          ],
+          "28": [
+            6834,
+            6871
+          ],
+          "29": [
+            7073,
+            7094
+          ],
+          "30": [
+            7284,
+            7306
+          ],
+          "31": [
+            7341,
+            7371
+          ]
+        },
+        "ERC20.allowance": {
+          "3": [
+            3945,
+            3979
+          ]
+        },
+        "ERC20.approve": {
+          "6": [
+            4420,
+            4451
+          ],
+          "7": [
+            4461,
+            4472
+          ]
+        },
+        "ERC20.balanceOf": {
+          "2": [
+            3383,
+            3408
+          ]
+        },
+        "ERC20.decimals": {
+          "1": [
+            3068,
+            3077
+          ]
+        },
+        "ERC20.name": {
+          "4": [
+            2144,
+            2156
+          ]
+        },
+        "ERC20.symbol": {
+          "12": [
+            2348,
+            2362
+          ]
+        },
+        "ERC20.totalSupply": {
+          "0": [
+            3215,
+            3234
+          ]
+        },
+        "ERC20.transfer": {
+          "13": [
+            3733,
+            3760
+          ]
+        },
+        "ERC20.transferFrom": {
+          "9": [
+            5182,
+            5219
+          ],
+          "10": [
+            5229,
+            5255
+          ],
+          "11": [
+            5265,
+            5276
+          ]
+        }
+      },
+      "2": {},
+      "3": {},
+      "4": {
+        "Context._msgSender": {
+          "5": [
+            728,
+            745
+          ]
+        }
+      },
+      "5": {
+        "ForumUSD.mint": {
+          "8": [
+            219,
+            245
+          ]
+        }
+      }
+    }
+  },
+  "dependencies": [
+    "OpenZeppelin/openzeppelin-contracts@5.0.1/Context",
+    "OpenZeppelin/openzeppelin-contracts@5.0.1/ERC20",
+    "OpenZeppelin/openzeppelin-contracts@5.0.1/IERC20",
+    "OpenZeppelin/openzeppelin-contracts@5.0.1/IERC20Errors",
+    "OpenZeppelin/openzeppelin-contracts@5.0.1/IERC20Metadata"
+  ],
+  "deployedBytecode": "608060405234801561001057600080fd5b506004361061009e5760003560e01c8063313ce56711610066578063313ce5671461011357806370a082311461012257806395d89b411461014b578063a9059cbb14610153578063dd62ed3e1461016657600080fd5b806306fdde03146100a3578063095ea7b3146100c15780631249c58b146100e457806318160ddd146100ee57806323b872dd14610100575b600080fd5b6100ab61019f565b6040516100b891906105cd565b60405180910390f35b6100d46100cf366004610638565b610231565b60405190151581526020016100b8565b6100ec61024b565b005b6002545b6040519081526020016100b8565b6100d461010e366004610662565b61025f565b604051601281526020016100b8565b6100f261013036600461069e565b6001600160a01b031660009081526020819052604090205490565b6100ab610283565b6100d4610161366004610638565b610292565b6100f26101743660046106c0565b6001600160a01b03918216600090815260016020908152604080832093909416825291909152205490565b6060600380546101ae906106f3565b80601f01602080910402602001604051908101604052809291908181526020018280546101da906106f3565b80156102275780601f106101fc57610100808354040283529160200191610227565b820191906000526020600020905b81548152906001019060200180831161020a57829003601f168201915b5050505050905090565b60003361023f8185856102a0565b60019150505b92915050565b61025d33674563918244f400006102b2565b565b60003361026d8582856102f1565b61027885858561036f565b506001949350505050565b6060600480546101ae906106f3565b60003361023f81858561036f565b6102ad83838360016103ce565b505050565b6001600160a01b0382166102e15760405163ec442f0560e01b8152600060048201526024015b60405180910390fd5b6102ed600083836104a3565b5050565b6001600160a01b038381166000908152600160209081526040808320938616835292905220546000198114610369578181101561035a57604051637dc7a0d960e11b81526001600160a01b038416600482015260248101829052604481018390526064016102d8565b610369848484840360006103ce565b50505050565b6001600160a01b03831661039957604051634b637e8f60e11b8152600060048201526024016102d8565b6001600160a01b0382166103c35760405163ec442f0560e01b8152600060048201526024016102d8565b6102ad8383836104a3565b6001600160a01b0384166103f85760405163e602df0560e01b8152600060048201526024016102d8565b6001600160a01b03831661042257604051634a1406b160e11b8152600060048201526024016102d8565b6001600160a01b038085166000908152600160209081526040808320938716835292905220829055801561036957826001600160a01b0316846001600160a01b03167f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b9258460405161049591815260200190565b60405180910390a350505050565b6001600160a01b0383166104ce5780600260008282546104c3919061072d565b909155506105409050565b6001600160a01b038316600090815260208190526040902054818110156105215760405163391434e360e21b81526001600160a01b038516600482015260248101829052604481018390526064016102d8565b6001600160a01b03841660009081526020819052604090209082900390555b6001600160a01b03821661055c5760028054829003905561057b565b6001600160a01b03821660009081526020819052604090208054820190555b816001600160a01b0316836001600160a01b03167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef836040516105c091815260200190565b60405180910390a3505050565b60006020808352835180602085015260005b818110156105fb578581018301518582016040015282016105df565b506000604082860101526040601f19601f8301168501019250505092915050565b80356001600160a01b038116811461063357600080fd5b919050565b6000806040838503121561064b57600080fd5b6106548361061c565b946020939093013593505050565b60008060006060848603121561067757600080fd5b6106808461061c565b925061068e6020850161061c565b9150604084013590509250925092565b6000602082840312156106b057600080fd5b6106b98261061c565b9392505050565b600080604083850312156106d357600080fd5b6106dc8361061c565b91506106ea6020840161061c565b90509250929050565b600181811c9082168061070757607f821691505b60208210810361072757634e487b7160e01b600052602260045260246000fd5b50919050565b8082018082111561024557634e487b7160e01b600052601160045260246000fdfea2646970667358221220be8d200eddfa9b8230721ed948a6065a55581fc6331d25951891c9d7f46cc1d364736f6c63430008170033",
+  "deployedSourceMap": "103:152:5:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2074:89:1;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;4293:186;;;;;;:::i;:::-;;:::i;:::-;;;1169:14:6;;1162:22;1144:41;;1132:2;1117:18;4293:186:1;1004:187:6;185:67:5;;;:::i;:::-;;3144:97:1;3222:12;;3144:97;;;1342:25:6;;;1330:2;1315:18;3144:97:1;1196:177:6;5039:244:1;;;;;;:::i;:::-;;:::i;3002:82::-;;;3075:2;1853:36:6;;1841:2;1826:18;3002:82:1;1711:184:6;3299:116:1;;;;;;:::i;:::-;-1:-1:-1;;;;;3390:18:1;3364:7;3390:18;;;;;;;;;;;;3299:116;2276:93;;;:::i;3610:178::-;;;;;;:::i;:::-;;:::i;3846:140::-;;;;;;:::i;:::-;-1:-1:-1;;;;;3952:18:1;;;3926:7;3952:18;;;:11;:18;;;;;;;;:27;;;;;;;;;;;;;3846:140;2074:89;2119:13;2151:5;2144:12;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2074:89;:::o;4293:186::-;4366:4;735:10:4;4420:31:1;735:10:4;4436:7:1;4445:5;4420:8;:31::i;:::-;4468:4;4461:11;;;4293:186;;;;;:::o;185:67:5:-;219:26;225:10;237:7;219:5;:26::i;:::-;185:67::o;5039:244:1:-;5126:4;735:10:4;5182:37:1;5198:4;735:10:4;5213:5:1;5182:15;:37::i;:::-;5229:26;5239:4;5245:2;5249:5;5229:9;:26::i;:::-;-1:-1:-1;5272:4:1;;5039:244;-1:-1:-1;;;;5039:244:1:o;2276:93::-;2323:13;2355:7;2348:14;;;;;:::i;3610:178::-;3679:4;735:10:4;3733:27:1;735:10:4;3750:2:1;3754:5;3733:9;:27::i;8989:128::-;9073:37;9082:5;9089:7;9098:5;9105:4;9073:8;:37::i;:::-;8989:128;;;:::o;7721:208::-;-1:-1:-1;;;;;7791:21:1;;7787:91;;7835:32;;-1:-1:-1;;;7835:32:1;;7864:1;7835:32;;;2887:51:6;2860:18;;7835:32:1;;;;;;;;7787:91;7887:35;7903:1;7907:7;7916:5;7887:7;:35::i;:::-;7721:208;;:::o;10663:477::-;-1:-1:-1;;;;;3952:18:1;;;10762:24;3952:18;;;:11;:18;;;;;;;;:27;;;;;;;;;;-1:-1:-1;;10828:37:1;;10824:310;;10904:5;10885:16;:24;10881:130;;;10936:60;;-1:-1:-1;;;10936:60:1;;-1:-1:-1;;;;;3169:32:6;;10936:60:1;;;3151:51:6;3218:18;;;3211:34;;;3261:18;;;3254:34;;;3124:18;;10936:60:1;2949:345:6;10881:130:1;11052:57;11061:5;11068:7;11096:5;11077:16;:24;11103:5;11052:8;:57::i;:::-;10752:388;10663:477;;;:::o;5656:300::-;-1:-1:-1;;;;;5739:18:1;;5735:86;;5780:30;;-1:-1:-1;;;5780:30:1;;5807:1;5780:30;;;2887:51:6;2860:18;;5780:30:1;2741:203:6;5735:86:1;-1:-1:-1;;;;;5834:16:1;;5830:86;;5873:32;;-1:-1:-1;;;5873:32:1;;5902:1;5873:32;;;2887:51:6;2860:18;;5873:32:1;2741:203:6;5830:86:1;5925:24;5933:4;5939:2;5943:5;5925:7;:24::i;9949:432::-;-1:-1:-1;;;;;10061:19:1;;10057:89;;10103:32;;-1:-1:-1;;;10103:32:1;;10132:1;10103:32;;;2887:51:6;2860:18;;10103:32:1;2741:203:6;10057:89:1;-1:-1:-1;;;;;10159:21:1;;10155:90;;10203:31;;-1:-1:-1;;;10203:31:1;;10231:1;10203:31;;;2887:51:6;2860:18;;10203:31:1;2741:203:6;10155:90:1;-1:-1:-1;;;;;10254:18:1;;;;;;;:11;:18;;;;;;;;:27;;;;;;;;;:35;;;10299:76;;;;10349:7;-1:-1:-1;;;;;10333:31:1;10342:5;-1:-1:-1;;;;;10333:31:1;;10358:5;10333:31;;;;1342:25:6;;1330:2;1315:18;;1196:177;10333:31:1;;;;;;;;9949:432;;;;:::o;6271:1107::-;-1:-1:-1;;;;;6360:18:1;;6356:540;;6512:5;6496:12;;:21;;;;;;;:::i;:::-;;;;-1:-1:-1;6356:540:1;;-1:-1:-1;6356:540:1;;-1:-1:-1;;;;;6570:15:1;;6548:19;6570:15;;;;;;;;;;;6603:19;;;6599:115;;;6649:50;;-1:-1:-1;;;6649:50:1;;-1:-1:-1;;;;;3169:32:6;;6649:50:1;;;3151:51:6;3218:18;;;3211:34;;;3261:18;;;3254:34;;;3124:18;;6649:50:1;2949:345:6;6599:115:1;-1:-1:-1;;;;;6834:15:1;;:9;:15;;;;;;;;;;6852:19;;;;6834:37;;6356:540;-1:-1:-1;;;;;6910:16:1;;6906:425;;7073:12;:21;;;;;;;6906:425;;;-1:-1:-1;;;;;7284:13:1;;:9;:13;;;;;;;;;;:22;;;;;;6906:425;7361:2;-1:-1:-1;;;;;7346:25:1;7355:4;-1:-1:-1;;;;;7346:25:1;;7365:5;7346:25;;;;1342::6;;1330:2;1315:18;;1196:177;7346:25:1;;;;;;;;6271:1107;;;:::o;14:548:6:-;126:4;155:2;184;173:9;166:21;216:6;210:13;259:6;254:2;243:9;239:18;232:34;284:1;294:140;308:6;305:1;302:13;294:140;;;403:14;;;399:23;;393:30;369:17;;;388:2;365:26;358:66;323:10;;294:140;;;298:3;483:1;478:2;469:6;458:9;454:22;450:31;443:42;553:2;546;542:7;537:2;529:6;525:15;521:29;510:9;506:45;502:54;494:62;;;;14:548;;;;:::o;567:173::-;635:20;;-1:-1:-1;;;;;684:31:6;;674:42;;664:70;;730:1;727;720:12;664:70;567:173;;;:::o;745:254::-;813:6;821;874:2;862:9;853:7;849:23;845:32;842:52;;;890:1;887;880:12;842:52;913:29;932:9;913:29;:::i;:::-;903:39;989:2;974:18;;;;961:32;;-1:-1:-1;;;745:254:6:o;1378:328::-;1455:6;1463;1471;1524:2;1512:9;1503:7;1499:23;1495:32;1492:52;;;1540:1;1537;1530:12;1492:52;1563:29;1582:9;1563:29;:::i;:::-;1553:39;;1611:38;1645:2;1634:9;1630:18;1611:38;:::i;:::-;1601:48;;1696:2;1685:9;1681:18;1668:32;1658:42;;1378:328;;;;;:::o;1900:186::-;1959:6;2012:2;2000:9;1991:7;1987:23;1983:32;1980:52;;;2028:1;2025;2018:12;1980:52;2051:29;2070:9;2051:29;:::i;:::-;2041:39;1900:186;-1:-1:-1;;;1900:186:6:o;2091:260::-;2159:6;2167;2220:2;2208:9;2199:7;2195:23;2191:32;2188:52;;;2236:1;2233;2226:12;2188:52;2259:29;2278:9;2259:29;:::i;:::-;2249:39;;2307:38;2341:2;2330:9;2326:18;2307:38;:::i;:::-;2297:48;;2091:260;;;;;:::o;2356:380::-;2435:1;2431:12;;;;2478;;;2499:61;;2553:4;2545:6;2541:17;2531:27;;2499:61;2606:2;2598:6;2595:14;2575:18;2572:38;2569:161;;2652:10;2647:3;2643:20;2640:1;2633:31;2687:4;2684:1;2677:15;2715:4;2712:1;2705:15;2569:161;;2356:380;;;:::o;3299:222::-;3364:9;;;3385:10;;;3382:133;;;3437:10;3432:3;3428:20;3425:1;3418:31;3472:4;3469:1;3462:15;3500:4;3497:1;3490:15",
+  "language": "Solidity",
+  "natspec": {
+    "errors": {
+      "ERC20InsufficientAllowance(address,uint256,uint256)": [
+        {
+          "details": "Indicates a failure with the `spender`\u2019s `allowance`. Used in transfers.",
+          "params": {
+            "allowance": "Amount of tokens a `spender` is allowed to operate with.",
+            "needed": "Minimum amount required to perform a transfer.",
+            "spender": "Address that may be allowed to operate on tokens without being their owner."
+          }
+        }
+      ],
+      "ERC20InsufficientBalance(address,uint256,uint256)": [
+        {
+          "details": "Indicates an error related to the current `balance` of a `sender`. Used in transfers.",
+          "params": {
+            "balance": "Current balance for the interacting account.",
+            "needed": "Minimum amount required to perform a transfer.",
+            "sender": "Address whose tokens are being transferred."
+          }
+        }
+      ],
+      "ERC20InvalidApprover(address)": [
+        {
+          "details": "Indicates a failure with the `approver` of a token to be approved. Used in approvals.",
+          "params": {
+            "approver": "Address initiating an approval operation."
+          }
+        }
+      ],
+      "ERC20InvalidReceiver(address)": [
+        {
+          "details": "Indicates a failure with the token `receiver`. Used in transfers.",
+          "params": {
+            "receiver": "Address to which tokens are being transferred."
+          }
+        }
+      ],
+      "ERC20InvalidSender(address)": [
+        {
+          "details": "Indicates a failure with the token `sender`. Used in transfers.",
+          "params": {
+            "sender": "Address whose tokens are being transferred."
+          }
+        }
+      ],
+      "ERC20InvalidSpender(address)": [
+        {
+          "details": "Indicates a failure with the `spender` to be approved. Used in approvals.",
+          "params": {
+            "spender": "Address that may be allowed to operate on tokens without being their owner."
+          }
+        }
+      ]
+    },
+    "events": {
+      "Approval(address,address,uint256)": {
+        "details": "Emitted when the allowance of a `spender` for an `owner` is set by a call to {approve}. `value` is the new allowance."
+      },
+      "Transfer(address,address,uint256)": {
+        "details": "Emitted when `value` tokens are moved from one account (`from`) to another (`to`). Note that `value` may be zero."
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "allowance(address,address)": {
+        "details": "See {IERC20-allowance}."
+      },
+      "approve(address,uint256)": {
+        "details": "See {IERC20-approve}. NOTE: If `value` is the maximum `uint256`, the allowance is not updated on `transferFrom`. This is semantically equivalent to an infinite approval. Requirements: - `spender` cannot be the zero address."
+      },
+      "balanceOf(address)": {
+        "details": "See {IERC20-balanceOf}."
+      },
+      "decimals()": {
+        "details": "Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5.05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the default value returned by this function, unless it's overridden. NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}."
+      },
+      "name()": {
+        "details": "Returns the name of the token."
+      },
+      "symbol()": {
+        "details": "Returns the symbol of the token, usually a shorter version of the name."
+      },
+      "totalSupply()": {
+        "details": "See {IERC20-totalSupply}."
+      },
+      "transfer(address,uint256)": {
+        "details": "See {IERC20-transfer}. Requirements: - `to` cannot be the zero address. - the caller must have a balance of at least `value`."
+      },
+      "transferFrom(address,address,uint256)": {
+        "details": "See {IERC20-transferFrom}. Emits an {Approval} event indicating the updated allowance. This is not required by the EIP. See the note at the beginning of {ERC20}. NOTE: Does not update the allowance if the current allowance is the maximum `uint256`. Requirements: - `from` and `to` cannot be the zero address. - `from` must have a balance of at least `value`. - the caller must have allowance for ``from``'s tokens of at least `value`."
+      }
+    },
+    "version": 1
+  },
+  "offset": [
+    103,
+    255
+  ],
+  "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH2 0x9E JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x313CE567 GT PUSH2 0x66 JUMPI DUP1 PUSH4 0x313CE567 EQ PUSH2 0x113 JUMPI DUP1 PUSH4 0x70A08231 EQ PUSH2 0x122 JUMPI DUP1 PUSH4 0x95D89B41 EQ PUSH2 0x14B JUMPI DUP1 PUSH4 0xA9059CBB EQ PUSH2 0x153 JUMPI DUP1 PUSH4 0xDD62ED3E EQ PUSH2 0x166 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP1 PUSH4 0x6FDDE03 EQ PUSH2 0xA3 JUMPI DUP1 PUSH4 0x95EA7B3 EQ PUSH2 0xC1 JUMPI DUP1 PUSH4 0x1249C58B EQ PUSH2 0xE4 JUMPI DUP1 PUSH4 0x18160DDD EQ PUSH2 0xEE JUMPI DUP1 PUSH4 0x23B872DD EQ PUSH2 0x100 JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0xAB PUSH2 0x19F JUMP JUMPDEST PUSH1 0x40 MLOAD PUSH2 0xB8 SWAP2 SWAP1 PUSH2 0x5CD JUMP JUMPDEST PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 RETURN JUMPDEST PUSH2 0xD4 PUSH2 0xCF CALLDATASIZE PUSH1 0x4 PUSH2 0x638 JUMP JUMPDEST PUSH2 0x231 JUMP JUMPDEST PUSH1 0x40 MLOAD SWAP1 ISZERO ISZERO DUP2 MSTORE PUSH1 0x20 ADD PUSH2 0xB8 JUMP JUMPDEST PUSH2 0xEC PUSH2 0x24B JUMP JUMPDEST STOP JUMPDEST PUSH1 0x2 SLOAD JUMPDEST PUSH1 0x40 MLOAD SWAP1 DUP2 MSTORE PUSH1 0x20 ADD PUSH2 0xB8 JUMP JUMPDEST PUSH2 0xD4 PUSH2 0x10E CALLDATASIZE PUSH1 0x4 PUSH2 0x662 JUMP JUMPDEST PUSH2 0x25F JUMP JUMPDEST PUSH1 0x40 MLOAD PUSH1 0x12 DUP2 MSTORE PUSH1 0x20 ADD PUSH2 0xB8 JUMP JUMPDEST PUSH2 0xF2 PUSH2 0x130 CALLDATASIZE PUSH1 0x4 PUSH2 0x69E JUMP JUMPDEST PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND PUSH1 0x0 SWAP1 DUP2 MSTORE PUSH1 0x20 DUP2 SWAP1 MSTORE PUSH1 0x40 SWAP1 KECCAK256 SLOAD SWAP1 JUMP JUMPDEST PUSH2 0xAB PUSH2 0x283 JUMP JUMPDEST PUSH2 0xD4 PUSH2 0x161 CALLDATASIZE PUSH1 0x4 PUSH2 0x638 JUMP JUMPDEST PUSH2 0x292 JUMP JUMPDEST PUSH2 0xF2 PUSH2 0x174 CALLDATASIZE PUSH1 0x4 PUSH2 0x6C0 JUMP JUMPDEST PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP2 DUP3 AND PUSH1 0x0 SWAP1 DUP2 MSTORE PUSH1 0x1 PUSH1 0x20 SWAP1 DUP2 MSTORE PUSH1 0x40 DUP1 DUP4 KECCAK256 SWAP4 SWAP1 SWAP5 AND DUP3 MSTORE SWAP2 SWAP1 SWAP2 MSTORE KECCAK256 SLOAD SWAP1 JUMP JUMPDEST PUSH1 0x60 PUSH1 0x3 DUP1 SLOAD PUSH2 0x1AE SWAP1 PUSH2 0x6F3 JUMP JUMPDEST DUP1 PUSH1 0x1F ADD PUSH1 0x20 DUP1 SWAP2 DIV MUL PUSH1 0x20 ADD PUSH1 0x40 MLOAD SWAP1 DUP2 ADD PUSH1 0x40 MSTORE DUP1 SWAP3 SWAP2 SWAP1 DUP2 DUP2 MSTORE PUSH1 0x20 ADD DUP3 DUP1 SLOAD PUSH2 0x1DA SWAP1 PUSH2 0x6F3 JUMP JUMPDEST DUP1 ISZERO PUSH2 0x227 JUMPI DUP1 PUSH1 0x1F LT PUSH2 0x1FC JUMPI PUSH2 0x100 DUP1 DUP4 SLOAD DIV MUL DUP4 MSTORE SWAP2 PUSH1 0x20 ADD SWAP2 PUSH2 0x227 JUMP JUMPDEST DUP3 ADD SWAP2 SWAP1 PUSH1 0x0 MSTORE PUSH1 0x20 PUSH1 0x0 KECCAK256 SWAP1 JUMPDEST DUP2 SLOAD DUP2 MSTORE SWAP1 PUSH1 0x1 ADD SWAP1 PUSH1 0x20 ADD DUP1 DUP4 GT PUSH2 0x20A JUMPI DUP3 SWAP1 SUB PUSH1 0x1F AND DUP3 ADD SWAP2 JUMPDEST POP POP POP POP POP SWAP1 POP SWAP1 JUMP JUMPDEST PUSH1 0x0 CALLER PUSH2 0x23F DUP2 DUP6 DUP6 PUSH2 0x2A0 JUMP JUMPDEST PUSH1 0x1 SWAP2 POP POP JUMPDEST SWAP3 SWAP2 POP POP JUMP JUMPDEST PUSH2 0x25D CALLER PUSH8 0x4563918244F40000 PUSH2 0x2B2 JUMP JUMPDEST JUMP JUMPDEST PUSH1 0x0 CALLER PUSH2 0x26D DUP6 DUP3 DUP6 PUSH2 0x2F1 JUMP JUMPDEST PUSH2 0x278 DUP6 DUP6 DUP6 PUSH2 0x36F JUMP JUMPDEST POP PUSH1 0x1 SWAP5 SWAP4 POP POP POP POP JUMP JUMPDEST PUSH1 0x60 PUSH1 0x4 DUP1 SLOAD PUSH2 0x1AE SWAP1 PUSH2 0x6F3 JUMP JUMPDEST PUSH1 0x0 CALLER PUSH2 0x23F DUP2 DUP6 DUP6 PUSH2 0x36F JUMP JUMPDEST PUSH2 0x2AD DUP4 DUP4 DUP4 PUSH1 0x1 PUSH2 0x3CE JUMP JUMPDEST POP POP POP JUMP JUMPDEST PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP3 AND PUSH2 0x2E1 JUMPI PUSH1 0x40 MLOAD PUSH4 0xEC442F05 PUSH1 0xE0 SHL DUP2 MSTORE PUSH1 0x0 PUSH1 0x4 DUP3 ADD MSTORE PUSH1 0x24 ADD JUMPDEST PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 REVERT JUMPDEST PUSH2 0x2ED PUSH1 0x0 DUP4 DUP4 PUSH2 0x4A3 JUMP JUMPDEST POP POP JUMP JUMPDEST PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP4 DUP2 AND PUSH1 0x0 SWAP1 DUP2 MSTORE PUSH1 0x1 PUSH1 0x20 SWAP1 DUP2 MSTORE PUSH1 0x40 DUP1 DUP4 KECCAK256 SWAP4 DUP7 AND DUP4 MSTORE SWAP3 SWAP1 MSTORE KECCAK256 SLOAD PUSH1 0x0 NOT DUP2 EQ PUSH2 0x369 JUMPI DUP2 DUP2 LT ISZERO PUSH2 0x35A JUMPI PUSH1 0x40 MLOAD PUSH4 0x7DC7A0D9 PUSH1 0xE1 SHL DUP2 MSTORE PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP5 AND PUSH1 0x4 DUP3 ADD MSTORE PUSH1 0x24 DUP2 ADD DUP3 SWAP1 MSTORE PUSH1 0x44 DUP2 ADD DUP4 SWAP1 MSTORE PUSH1 0x64 ADD PUSH2 0x2D8 JUMP JUMPDEST PUSH2 0x369 DUP5 DUP5 DUP5 DUP5 SUB PUSH1 0x0 PUSH2 0x3CE JUMP JUMPDEST POP POP POP POP JUMP JUMPDEST PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP4 AND PUSH2 0x399 JUMPI PUSH1 0x40 MLOAD PUSH4 0x4B637E8F PUSH1 0xE1 SHL DUP2 MSTORE PUSH1 0x0 PUSH1 0x4 DUP3 ADD MSTORE PUSH1 0x24 ADD PUSH2 0x2D8 JUMP JUMPDEST PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP3 AND PUSH2 0x3C3 JUMPI PUSH1 0x40 MLOAD PUSH4 0xEC442F05 PUSH1 0xE0 SHL DUP2 MSTORE PUSH1 0x0 PUSH1 0x4 DUP3 ADD MSTORE PUSH1 0x24 ADD PUSH2 0x2D8 JUMP JUMPDEST PUSH2 0x2AD DUP4 DUP4 DUP4 PUSH2 0x4A3 JUMP JUMPDEST PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP5 AND PUSH2 0x3F8 JUMPI PUSH1 0x40 MLOAD PUSH4 0xE602DF05 PUSH1 0xE0 SHL DUP2 MSTORE PUSH1 0x0 PUSH1 0x4 DUP3 ADD MSTORE PUSH1 0x24 ADD PUSH2 0x2D8 JUMP JUMPDEST PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP4 AND PUSH2 0x422 JUMPI PUSH1 0x40 MLOAD PUSH4 0x4A1406B1 PUSH1 0xE1 SHL DUP2 MSTORE PUSH1 0x0 PUSH1 0x4 DUP3 ADD MSTORE PUSH1 0x24 ADD PUSH2 0x2D8 JUMP JUMPDEST PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP1 DUP6 AND PUSH1 0x0 SWAP1 DUP2 MSTORE PUSH1 0x1 PUSH1 0x20 SWAP1 DUP2 MSTORE PUSH1 0x40 DUP1 DUP4 KECCAK256 SWAP4 DUP8 AND DUP4 MSTORE SWAP3 SWAP1 MSTORE KECCAK256 DUP3 SWAP1 SSTORE DUP1 ISZERO PUSH2 0x369 JUMPI DUP3 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND DUP5 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND PUSH32 0x8C5BE1E5EBEC7D5BD14F71427D1E84F3DD0314C0F7B2291E5B200AC8C7C3B925 DUP5 PUSH1 0x40 MLOAD PUSH2 0x495 SWAP2 DUP2 MSTORE PUSH1 0x20 ADD SWAP1 JUMP JUMPDEST PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 LOG3 POP POP POP POP JUMP JUMPDEST PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP4 AND PUSH2 0x4CE JUMPI DUP1 PUSH1 0x2 PUSH1 0x0 DUP3 DUP3 SLOAD PUSH2 0x4C3 SWAP2 SWAP1 PUSH2 0x72D JUMP JUMPDEST SWAP1 SWAP2 SSTORE POP PUSH2 0x540 SWAP1 POP JUMP JUMPDEST PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP4 AND PUSH1 0x0 SWAP1 DUP2 MSTORE PUSH1 0x20 DUP2 SWAP1 MSTORE PUSH1 0x40 SWAP1 KECCAK256 SLOAD DUP2 DUP2 LT ISZERO PUSH2 0x521 JUMPI PUSH1 0x40 MLOAD PUSH4 0x391434E3 PUSH1 0xE2 SHL DUP2 MSTORE PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP6 AND PUSH1 0x4 DUP3 ADD MSTORE PUSH1 0x24 DUP2 ADD DUP3 SWAP1 MSTORE PUSH1 0x44 DUP2 ADD DUP4 SWAP1 MSTORE PUSH1 0x64 ADD PUSH2 0x2D8 JUMP JUMPDEST PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP5 AND PUSH1 0x0 SWAP1 DUP2 MSTORE PUSH1 0x20 DUP2 SWAP1 MSTORE PUSH1 0x40 SWAP1 KECCAK256 SWAP1 DUP3 SWAP1 SUB SWAP1 SSTORE JUMPDEST PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP3 AND PUSH2 0x55C JUMPI PUSH1 0x2 DUP1 SLOAD DUP3 SWAP1 SUB SWAP1 SSTORE PUSH2 0x57B JUMP JUMPDEST PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP3 AND PUSH1 0x0 SWAP1 DUP2 MSTORE PUSH1 0x20 DUP2 SWAP1 MSTORE PUSH1 0x40 SWAP1 KECCAK256 DUP1 SLOAD DUP3 ADD SWAP1 SSTORE JUMPDEST DUP2 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND DUP4 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND PUSH32 0xDDF252AD1BE2C89B69C2B068FC378DAA952BA7F163C4A11628F55A4DF523B3EF DUP4 PUSH1 0x40 MLOAD PUSH2 0x5C0 SWAP2 DUP2 MSTORE PUSH1 0x20 ADD SWAP1 JUMP JUMPDEST PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 LOG3 POP POP POP JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP1 DUP4 MSTORE DUP4 MLOAD DUP1 PUSH1 0x20 DUP6 ADD MSTORE PUSH1 0x0 JUMPDEST DUP2 DUP2 LT ISZERO PUSH2 0x5FB JUMPI DUP6 DUP2 ADD DUP4 ADD MLOAD DUP6 DUP3 ADD PUSH1 0x40 ADD MSTORE DUP3 ADD PUSH2 0x5DF JUMP JUMPDEST POP PUSH1 0x0 PUSH1 0x40 DUP3 DUP7 ADD ADD MSTORE PUSH1 0x40 PUSH1 0x1F NOT PUSH1 0x1F DUP4 ADD AND DUP6 ADD ADD SWAP3 POP POP POP SWAP3 SWAP2 POP POP JUMP JUMPDEST DUP1 CALLDATALOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP2 AND DUP2 EQ PUSH2 0x633 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST SWAP2 SWAP1 POP JUMP JUMPDEST PUSH1 0x0 DUP1 PUSH1 0x40 DUP4 DUP6 SUB SLT ISZERO PUSH2 0x64B JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x654 DUP4 PUSH2 0x61C JUMP JUMPDEST SWAP5 PUSH1 0x20 SWAP4 SWAP1 SWAP4 ADD CALLDATALOAD SWAP4 POP POP POP JUMP JUMPDEST PUSH1 0x0 DUP1 PUSH1 0x0 PUSH1 0x60 DUP5 DUP7 SUB SLT ISZERO PUSH2 0x677 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x680 DUP5 PUSH2 0x61C JUMP JUMPDEST SWAP3 POP PUSH2 0x68E PUSH1 0x20 DUP6 ADD PUSH2 0x61C JUMP JUMPDEST SWAP2 POP PUSH1 0x40 DUP5 ADD CALLDATALOAD SWAP1 POP SWAP3 POP SWAP3 POP SWAP3 JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP3 DUP5 SUB SLT ISZERO PUSH2 0x6B0 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x6B9 DUP3 PUSH2 0x61C JUMP JUMPDEST SWAP4 SWAP3 POP POP POP JUMP JUMPDEST PUSH1 0x0 DUP1 PUSH1 0x40 DUP4 DUP6 SUB SLT ISZERO PUSH2 0x6D3 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x6DC DUP4 PUSH2 0x61C JUMP JUMPDEST SWAP2 POP PUSH2 0x6EA PUSH1 0x20 DUP5 ADD PUSH2 0x61C JUMP JUMPDEST SWAP1 POP SWAP3 POP SWAP3 SWAP1 POP JUMP JUMPDEST PUSH1 0x1 DUP2 DUP2 SHR SWAP1 DUP3 AND DUP1 PUSH2 0x707 JUMPI PUSH1 0x7F DUP3 AND SWAP2 POP JUMPDEST PUSH1 0x20 DUP3 LT DUP2 SUB PUSH2 0x727 JUMPI PUSH4 0x4E487B71 PUSH1 0xE0 SHL PUSH1 0x0 MSTORE PUSH1 0x22 PUSH1 0x4 MSTORE PUSH1 0x24 PUSH1 0x0 REVERT JUMPDEST POP SWAP2 SWAP1 POP JUMP JUMPDEST DUP1 DUP3 ADD DUP1 DUP3 GT ISZERO PUSH2 0x245 JUMPI PUSH4 0x4E487B71 PUSH1 0xE0 SHL PUSH1 0x0 MSTORE PUSH1 0x11 PUSH1 0x4 MSTORE PUSH1 0x24 PUSH1 0x0 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0xBE DUP14 KECCAK256 0xE 0xDD STATICCALL SWAP12 DUP3 ADDRESS PUSH19 0x1ED948A6065A55581FC6331D25951891C9D7F4 PUSH13 0xC1D364736F6C63430008170033 ",
+  "pcMap": {
+    "0": {
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH1",
+      "path": "5",
+      "value": "0x80"
+    },
+    "2": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH1",
+      "path": "5",
+      "value": "0x40"
+    },
+    "4": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "MSTORE",
+      "path": "5"
+    },
+    "5": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "CALLVALUE",
+      "path": "5"
+    },
+    "6": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "DUP1",
+      "path": "5"
+    },
+    "7": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "ISZERO",
+      "path": "5"
+    },
+    "8": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "value": "0x10"
+    },
+    "11": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "JUMPI",
+      "path": "5"
+    },
+    "12": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH1",
+      "path": "5",
+      "value": "0x0"
+    },
+    "14": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "DUP1",
+      "path": "5"
+    },
+    "15": {
+      "dev": "Cannot send ether to nonpayable function",
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "REVERT",
+      "path": "5"
+    },
+    "16": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "JUMPDEST",
+      "path": "5"
+    },
+    "17": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "POP",
+      "path": "5"
+    },
+    "18": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH1",
+      "path": "5",
+      "value": "0x4"
+    },
+    "20": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "CALLDATASIZE",
+      "path": "5"
+    },
+    "21": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "LT",
+      "path": "5"
+    },
+    "22": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "value": "0x9E"
+    },
+    "25": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "JUMPI",
+      "path": "5"
+    },
+    "26": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH1",
+      "path": "5",
+      "value": "0x0"
+    },
+    "28": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "CALLDATALOAD",
+      "path": "5"
+    },
+    "29": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH1",
+      "path": "5",
+      "value": "0xE0"
+    },
+    "31": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "SHR",
+      "path": "5"
+    },
+    "32": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "DUP1",
+      "path": "5"
+    },
+    "33": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH4",
+      "path": "5",
+      "value": "0x313CE567"
+    },
+    "38": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "GT",
+      "path": "5"
+    },
+    "39": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "value": "0x66"
+    },
+    "42": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "JUMPI",
+      "path": "5"
+    },
+    "43": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "DUP1",
+      "path": "5"
+    },
+    "44": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH4",
+      "path": "5",
+      "value": "0x313CE567"
+    },
+    "49": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "EQ",
+      "path": "5"
+    },
+    "50": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "value": "0x113"
+    },
+    "53": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "JUMPI",
+      "path": "5"
+    },
+    "54": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "DUP1",
+      "path": "5"
+    },
+    "55": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH4",
+      "path": "5",
+      "value": "0x70A08231"
+    },
+    "60": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "EQ",
+      "path": "5"
+    },
+    "61": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "value": "0x122"
+    },
+    "64": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "JUMPI",
+      "path": "5"
+    },
+    "65": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "DUP1",
+      "path": "5"
+    },
+    "66": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH4",
+      "path": "5",
+      "value": "0x95D89B41"
+    },
+    "71": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "EQ",
+      "path": "5"
+    },
+    "72": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "value": "0x14B"
+    },
+    "75": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "JUMPI",
+      "path": "5"
+    },
+    "76": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "DUP1",
+      "path": "5"
+    },
+    "77": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH4",
+      "path": "5",
+      "value": "0xA9059CBB"
+    },
+    "82": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "EQ",
+      "path": "5"
+    },
+    "83": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "value": "0x153"
+    },
+    "86": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "JUMPI",
+      "path": "5"
+    },
+    "87": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "DUP1",
+      "path": "5"
+    },
+    "88": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH4",
+      "path": "5",
+      "value": "0xDD62ED3E"
+    },
+    "93": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "EQ",
+      "path": "5"
+    },
+    "94": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "value": "0x166"
+    },
+    "97": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "JUMPI",
+      "path": "5"
+    },
+    "98": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH1",
+      "path": "5",
+      "value": "0x0"
+    },
+    "100": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "DUP1",
+      "path": "5"
+    },
+    "101": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "REVERT",
+      "path": "5"
+    },
+    "102": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "JUMPDEST",
+      "path": "5"
+    },
+    "103": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "DUP1",
+      "path": "5"
+    },
+    "104": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH4",
+      "path": "5",
+      "value": "0x6FDDE03"
+    },
+    "109": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "EQ",
+      "path": "5"
+    },
+    "110": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "value": "0xA3"
+    },
+    "113": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "JUMPI",
+      "path": "5"
+    },
+    "114": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "DUP1",
+      "path": "5"
+    },
+    "115": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH4",
+      "path": "5",
+      "value": "0x95EA7B3"
+    },
+    "120": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "EQ",
+      "path": "5"
+    },
+    "121": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "value": "0xC1"
+    },
+    "124": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "JUMPI",
+      "path": "5"
+    },
+    "125": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "DUP1",
+      "path": "5"
+    },
+    "126": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH4",
+      "path": "5",
+      "value": "0x1249C58B"
+    },
+    "131": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "EQ",
+      "path": "5"
+    },
+    "132": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "value": "0xE4"
+    },
+    "135": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "JUMPI",
+      "path": "5"
+    },
+    "136": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "DUP1",
+      "path": "5"
+    },
+    "137": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH4",
+      "path": "5",
+      "value": "0x18160DDD"
+    },
+    "142": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "EQ",
+      "path": "5"
+    },
+    "143": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "value": "0xEE"
+    },
+    "146": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "JUMPI",
+      "path": "5"
+    },
+    "147": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "DUP1",
+      "path": "5"
+    },
+    "148": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH4",
+      "path": "5",
+      "value": "0x23B872DD"
+    },
+    "153": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "EQ",
+      "path": "5"
+    },
+    "154": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "value": "0x100"
+    },
+    "157": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "JUMPI",
+      "path": "5"
+    },
+    "158": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "JUMPDEST",
+      "path": "5"
+    },
+    "159": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "PUSH1",
+      "path": "5",
+      "value": "0x0"
+    },
+    "161": {
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "DUP1",
+      "path": "5"
+    },
+    "162": {
+      "first_revert": true,
+      "fn": null,
+      "offset": [
+        103,
+        255
+      ],
+      "op": "REVERT",
+      "path": "5"
+    },
+    "163": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "164": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0xAB"
+    },
+    "167": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x19F"
+    },
+    "170": {
+      "fn": "ERC20.name",
+      "jump": "i",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "171": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "172": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "174": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "175": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0xB8"
+    },
+    "178": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "179": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "180": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x5CD"
+    },
+    "183": {
+      "fn": "ERC20.name",
+      "jump": "i",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "184": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "185": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "187": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "188": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "189": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "190": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "SUB",
+      "path": "1"
+    },
+    "191": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "192": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "RETURN",
+      "path": "1"
+    },
+    "193": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "194": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0xD4"
+    },
+    "197": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0xCF"
+    },
+    "200": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "CALLDATASIZE",
+      "path": "1"
+    },
+    "201": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x4"
+    },
+    "203": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x638"
+    },
+    "206": {
+      "fn": "ERC20.approve",
+      "jump": "i",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "207": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "208": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x231"
+    },
+    "211": {
+      "fn": "ERC20.approve",
+      "jump": "i",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "212": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "213": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "215": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "216": {
+      "op": "SWAP1"
+    },
+    "217": {
+      "op": "ISZERO"
+    },
+    "218": {
+      "op": "ISZERO"
+    },
+    "219": {
+      "op": "DUP2"
+    },
+    "220": {
+      "op": "MSTORE"
+    },
+    "221": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "223": {
+      "op": "ADD"
+    },
+    "224": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0xB8"
+    },
+    "227": {
+      "op": "JUMP"
+    },
+    "228": {
+      "fn": "ForumUSD.mint",
+      "offset": [
+        185,
+        252
+      ],
+      "op": "JUMPDEST",
+      "path": "5"
+    },
+    "229": {
+      "fn": "ForumUSD.mint",
+      "offset": [
+        185,
+        252
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "value": "0xEC"
+    },
+    "232": {
+      "fn": "ForumUSD.mint",
+      "offset": [
+        185,
+        252
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "value": "0x24B"
+    },
+    "235": {
+      "fn": "ForumUSD.mint",
+      "jump": "i",
+      "offset": [
+        185,
+        252
+      ],
+      "op": "JUMP",
+      "path": "5"
+    },
+    "236": {
+      "fn": "ForumUSD.mint",
+      "offset": [
+        185,
+        252
+      ],
+      "op": "JUMPDEST",
+      "path": "5"
+    },
+    "237": {
+      "fn": "ForumUSD.mint",
+      "offset": [
+        185,
+        252
+      ],
+      "op": "STOP",
+      "path": "5"
+    },
+    "238": {
+      "fn": "ERC20.totalSupply",
+      "offset": [
+        3144,
+        3241
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "239": {
+      "fn": "ERC20.totalSupply",
+      "offset": [
+        3222,
+        3234
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "statement": 0,
+      "value": "0x2"
+    },
+    "241": {
+      "fn": "ERC20.totalSupply",
+      "offset": [
+        3222,
+        3234
+      ],
+      "op": "SLOAD",
+      "path": "1"
+    },
+    "242": {
+      "fn": "ERC20.totalSupply",
+      "offset": [
+        3144,
+        3241
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "243": {
+      "fn": "ERC20.totalSupply",
+      "offset": [
+        3144,
+        3241
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "245": {
+      "fn": "ERC20.totalSupply",
+      "offset": [
+        3144,
+        3241
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "246": {
+      "op": "SWAP1"
+    },
+    "247": {
+      "op": "DUP2"
+    },
+    "248": {
+      "op": "MSTORE"
+    },
+    "249": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "251": {
+      "op": "ADD"
+    },
+    "252": {
+      "fn": "ERC20.totalSupply",
+      "offset": [
+        3144,
+        3241
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0xB8"
+    },
+    "255": {
+      "op": "JUMP"
+    },
+    "256": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5039,
+        5283
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "257": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5039,
+        5283
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0xD4"
+    },
+    "260": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5039,
+        5283
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x10E"
+    },
+    "263": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5039,
+        5283
+      ],
+      "op": "CALLDATASIZE",
+      "path": "1"
+    },
+    "264": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5039,
+        5283
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x4"
+    },
+    "266": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5039,
+        5283
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x662"
+    },
+    "269": {
+      "fn": "ERC20.transferFrom",
+      "jump": "i",
+      "offset": [
+        5039,
+        5283
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "270": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5039,
+        5283
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "271": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5039,
+        5283
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x25F"
+    },
+    "274": {
+      "fn": "ERC20.transferFrom",
+      "jump": "i",
+      "offset": [
+        5039,
+        5283
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "275": {
+      "fn": "ERC20.decimals",
+      "offset": [
+        3002,
+        3084
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "276": {
+      "fn": "ERC20.decimals",
+      "offset": [
+        3002,
+        3084
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "278": {
+      "fn": "ERC20.decimals",
+      "offset": [
+        3002,
+        3084
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "279": {
+      "fn": "ERC20.decimals",
+      "offset": [
+        3075,
+        3077
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "statement": 1,
+      "value": "0x12"
+    },
+    "281": {
+      "op": "DUP2"
+    },
+    "282": {
+      "op": "MSTORE"
+    },
+    "283": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "285": {
+      "op": "ADD"
+    },
+    "286": {
+      "fn": "ERC20.decimals",
+      "offset": [
+        3002,
+        3084
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0xB8"
+    },
+    "289": {
+      "op": "JUMP"
+    },
+    "290": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3299,
+        3415
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "291": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3299,
+        3415
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0xF2"
+    },
+    "294": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3299,
+        3415
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x130"
+    },
+    "297": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3299,
+        3415
+      ],
+      "op": "CALLDATASIZE",
+      "path": "1"
+    },
+    "298": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3299,
+        3415
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x4"
+    },
+    "300": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3299,
+        3415
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x69E"
+    },
+    "303": {
+      "fn": "ERC20.balanceOf",
+      "jump": "i",
+      "offset": [
+        3299,
+        3415
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "304": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3299,
+        3415
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "305": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "307": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "309": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "311": {
+      "op": "SHL"
+    },
+    "312": {
+      "op": "SUB"
+    },
+    "313": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3390,
+        3408
+      ],
+      "op": "AND",
+      "path": "1",
+      "statement": 2
+    },
+    "314": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3364,
+        3371
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "316": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3390,
+        3408
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "317": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3390,
+        3408
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "318": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3390,
+        3408
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "319": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3390,
+        3408
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x20"
+    },
+    "321": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3390,
+        3408
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "322": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3390,
+        3408
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "323": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3390,
+        3408
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "324": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3390,
+        3408
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "326": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3390,
+        3408
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "327": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3390,
+        3408
+      ],
+      "op": "KECCAK256",
+      "path": "1"
+    },
+    "328": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3390,
+        3408
+      ],
+      "op": "SLOAD",
+      "path": "1"
+    },
+    "329": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3390,
+        3408
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "330": {
+      "fn": "ERC20.balanceOf",
+      "offset": [
+        3299,
+        3415
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "331": {
+      "fn": "ERC20.symbol",
+      "offset": [
+        2276,
+        2369
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "332": {
+      "fn": "ERC20.symbol",
+      "offset": [
+        2276,
+        2369
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0xAB"
+    },
+    "335": {
+      "fn": "ERC20.symbol",
+      "offset": [
+        2276,
+        2369
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x283"
+    },
+    "338": {
+      "fn": "ERC20.symbol",
+      "jump": "i",
+      "offset": [
+        2276,
+        2369
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "339": {
+      "fn": "ERC20.transfer",
+      "offset": [
+        3610,
+        3788
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "340": {
+      "fn": "ERC20.transfer",
+      "offset": [
+        3610,
+        3788
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0xD4"
+    },
+    "343": {
+      "fn": "ERC20.transfer",
+      "offset": [
+        3610,
+        3788
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x161"
+    },
+    "346": {
+      "fn": "ERC20.transfer",
+      "offset": [
+        3610,
+        3788
+      ],
+      "op": "CALLDATASIZE",
+      "path": "1"
+    },
+    "347": {
+      "fn": "ERC20.transfer",
+      "offset": [
+        3610,
+        3788
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x4"
+    },
+    "349": {
+      "fn": "ERC20.transfer",
+      "offset": [
+        3610,
+        3788
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x638"
+    },
+    "352": {
+      "fn": "ERC20.transfer",
+      "jump": "i",
+      "offset": [
+        3610,
+        3788
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "353": {
+      "fn": "ERC20.transfer",
+      "offset": [
+        3610,
+        3788
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "354": {
+      "fn": "ERC20.transfer",
+      "offset": [
+        3610,
+        3788
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x292"
+    },
+    "357": {
+      "fn": "ERC20.transfer",
+      "jump": "i",
+      "offset": [
+        3610,
+        3788
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "358": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3846,
+        3986
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "359": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3846,
+        3986
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0xF2"
+    },
+    "362": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3846,
+        3986
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x174"
+    },
+    "365": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3846,
+        3986
+      ],
+      "op": "CALLDATASIZE",
+      "path": "1"
+    },
+    "366": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3846,
+        3986
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x4"
+    },
+    "368": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3846,
+        3986
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x6C0"
+    },
+    "371": {
+      "fn": "ERC20.allowance",
+      "jump": "i",
+      "offset": [
+        3846,
+        3986
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "372": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3846,
+        3986
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "373": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "375": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "377": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "379": {
+      "op": "SHL"
+    },
+    "380": {
+      "op": "SUB"
+    },
+    "381": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "SWAP2",
+      "path": "1",
+      "statement": 3
+    },
+    "382": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "383": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "384": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3926,
+        3933
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "386": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "387": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "388": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "389": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3963
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x1"
+    },
+    "391": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x20"
+    },
+    "393": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "394": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "395": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "396": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "398": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "399": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "400": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "KECCAK256",
+      "path": "1"
+    },
+    "401": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "SWAP4",
+      "path": "1"
+    },
+    "402": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "403": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "SWAP5",
+      "path": "1"
+    },
+    "404": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "405": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "406": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "407": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "408": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "409": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "410": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "411": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "KECCAK256",
+      "path": "1"
+    },
+    "412": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "SLOAD",
+      "path": "1"
+    },
+    "413": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "414": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3846,
+        3986
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "415": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "416": {
+      "fn": "ERC20.name",
+      "offset": [
+        2119,
+        2132
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x60"
+    },
+    "418": {
+      "fn": "ERC20.name",
+      "offset": [
+        2151,
+        2156
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "statement": 4,
+      "value": "0x3"
+    },
+    "420": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "421": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SLOAD",
+      "path": "1"
+    },
+    "422": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x1AE"
+    },
+    "425": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "426": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x6F3"
+    },
+    "429": {
+      "fn": "ERC20.name",
+      "jump": "i",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "430": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "431": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "432": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x1F"
+    },
+    "434": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "435": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x20"
+    },
+    "437": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "438": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "439": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DIV",
+      "path": "1"
+    },
+    "440": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "MUL",
+      "path": "1"
+    },
+    "441": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x20"
+    },
+    "443": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "444": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "446": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "447": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "448": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "449": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "450": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "452": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "453": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "454": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP3",
+      "path": "1"
+    },
+    "455": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "456": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "457": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "458": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "459": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "460": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x20"
+    },
+    "462": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "463": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "464": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "465": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SLOAD",
+      "path": "1"
+    },
+    "466": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x1DA"
+    },
+    "469": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "470": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x6F3"
+    },
+    "473": {
+      "fn": "ERC20.name",
+      "jump": "i",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "474": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "475": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "476": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "ISZERO",
+      "path": "1"
+    },
+    "477": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x227"
+    },
+    "480": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "481": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "482": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x1F"
+    },
+    "484": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "LT",
+      "path": "1"
+    },
+    "485": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x1FC"
+    },
+    "488": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "489": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x100"
+    },
+    "492": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "493": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "494": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SLOAD",
+      "path": "1"
+    },
+    "495": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DIV",
+      "path": "1"
+    },
+    "496": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "MUL",
+      "path": "1"
+    },
+    "497": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "498": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "499": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "500": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x20"
+    },
+    "502": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "503": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "504": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x227"
+    },
+    "507": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "508": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "509": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "510": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "511": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "512": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "513": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "515": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "516": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x20"
+    },
+    "518": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "520": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "KECCAK256",
+      "path": "1"
+    },
+    "521": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "522": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "523": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "524": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SLOAD",
+      "path": "1"
+    },
+    "525": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "526": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "527": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "528": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x1"
+    },
+    "530": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "531": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "532": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x20"
+    },
+    "534": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "535": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "536": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "537": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "GT",
+      "path": "1"
+    },
+    "538": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x20A"
+    },
+    "541": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "542": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "543": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "544": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SUB",
+      "path": "1"
+    },
+    "545": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x1F"
+    },
+    "547": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "548": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "549": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "550": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "551": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "552": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "553": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "554": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "555": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "556": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "557": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "558": {
+      "fn": "ERC20.name",
+      "offset": [
+        2144,
+        2156
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "559": {
+      "fn": "ERC20.name",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "560": {
+      "fn": "ERC20.name",
+      "jump": "o",
+      "offset": [
+        2074,
+        2163
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "561": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "562": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4366,
+        4370
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "564": {
+      "fn": "Context._msgSender",
+      "offset": [
+        735,
+        745
+      ],
+      "op": "CALLER",
+      "path": "4",
+      "statement": 5
+    },
+    "565": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4420,
+        4451
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "statement": 6,
+      "value": "0x23F"
+    },
+    "568": {
+      "fn": "Context._msgSender",
+      "offset": [
+        735,
+        745
+      ],
+      "op": "DUP2",
+      "path": "4"
+    },
+    "569": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4436,
+        4443
+      ],
+      "op": "DUP6",
+      "path": "1"
+    },
+    "570": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4445,
+        4450
+      ],
+      "op": "DUP6",
+      "path": "1"
+    },
+    "571": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4420,
+        4428
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x2A0"
+    },
+    "574": {
+      "fn": "ERC20.approve",
+      "jump": "i",
+      "offset": [
+        4420,
+        4451
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "575": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4420,
+        4451
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "576": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4468,
+        4472
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "statement": 7,
+      "value": "0x1"
+    },
+    "578": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4461,
+        4472
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "579": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4461,
+        4472
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "580": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4461,
+        4472
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "581": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "582": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "SWAP3",
+      "path": "1"
+    },
+    "583": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "584": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "585": {
+      "fn": "ERC20.approve",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "586": {
+      "fn": "ERC20.approve",
+      "jump": "o",
+      "offset": [
+        4293,
+        4479
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "587": {
+      "fn": "ForumUSD.mint",
+      "offset": [
+        185,
+        252
+      ],
+      "op": "JUMPDEST",
+      "path": "5"
+    },
+    "588": {
+      "fn": "ForumUSD.mint",
+      "offset": [
+        219,
+        245
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "statement": 8,
+      "value": "0x25D"
+    },
+    "591": {
+      "fn": "ForumUSD.mint",
+      "offset": [
+        225,
+        235
+      ],
+      "op": "CALLER",
+      "path": "5"
+    },
+    "592": {
+      "fn": "ForumUSD.mint",
+      "offset": [
+        237,
+        244
+      ],
+      "op": "PUSH8",
+      "path": "5",
+      "value": "0x4563918244F40000"
+    },
+    "601": {
+      "fn": "ForumUSD.mint",
+      "offset": [
+        219,
+        224
+      ],
+      "op": "PUSH2",
+      "path": "5",
+      "value": "0x2B2"
+    },
+    "604": {
+      "fn": "ForumUSD.mint",
+      "jump": "i",
+      "offset": [
+        219,
+        245
+      ],
+      "op": "JUMP",
+      "path": "5"
+    },
+    "605": {
+      "fn": "ForumUSD.mint",
+      "offset": [
+        219,
+        245
+      ],
+      "op": "JUMPDEST",
+      "path": "5"
+    },
+    "606": {
+      "fn": "ForumUSD.mint",
+      "jump": "o",
+      "offset": [
+        185,
+        252
+      ],
+      "op": "JUMP",
+      "path": "5"
+    },
+    "607": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5039,
+        5283
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "608": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5126,
+        5130
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "610": {
+      "fn": "Context._msgSender",
+      "offset": [
+        735,
+        745
+      ],
+      "op": "CALLER",
+      "path": "4"
+    },
+    "611": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5182,
+        5219
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "statement": 9,
+      "value": "0x26D"
+    },
+    "614": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5198,
+        5202
+      ],
+      "op": "DUP6",
+      "path": "1"
+    },
+    "615": {
+      "fn": "Context._msgSender",
+      "offset": [
+        735,
+        745
+      ],
+      "op": "DUP3",
+      "path": "4"
+    },
+    "616": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5213,
+        5218
+      ],
+      "op": "DUP6",
+      "path": "1"
+    },
+    "617": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5182,
+        5197
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x2F1"
+    },
+    "620": {
+      "fn": "ERC20.transferFrom",
+      "jump": "i",
+      "offset": [
+        5182,
+        5219
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "621": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5182,
+        5219
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "622": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5229,
+        5255
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "statement": 10,
+      "value": "0x278"
+    },
+    "625": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5239,
+        5243
+      ],
+      "op": "DUP6",
+      "path": "1"
+    },
+    "626": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5245,
+        5247
+      ],
+      "op": "DUP6",
+      "path": "1"
+    },
+    "627": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5249,
+        5254
+      ],
+      "op": "DUP6",
+      "path": "1"
+    },
+    "628": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5229,
+        5238
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x36F"
+    },
+    "631": {
+      "fn": "ERC20.transferFrom",
+      "jump": "i",
+      "offset": [
+        5229,
+        5255
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "632": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5229,
+        5255
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "633": {
+      "op": "POP"
+    },
+    "634": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5272,
+        5276
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "statement": 11,
+      "value": "0x1"
+    },
+    "636": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5272,
+        5276
+      ],
+      "op": "SWAP5",
+      "path": "1"
+    },
+    "637": {
+      "fn": "ERC20.transferFrom",
+      "offset": [
+        5039,
+        5283
+      ],
+      "op": "SWAP4",
+      "path": "1"
+    },
+    "638": {
+      "op": "POP"
+    },
+    "639": {
+      "op": "POP"
+    },
+    "640": {
+      "op": "POP"
+    },
+    "641": {
+      "op": "POP"
+    },
+    "642": {
+      "fn": "ERC20.transferFrom",
+      "jump": "o",
+      "offset": [
+        5039,
+        5283
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "643": {
+      "fn": "ERC20.symbol",
+      "offset": [
+        2276,
+        2369
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "644": {
+      "fn": "ERC20.symbol",
+      "offset": [
+        2323,
+        2336
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x60"
+    },
+    "646": {
+      "fn": "ERC20.symbol",
+      "offset": [
+        2355,
+        2362
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "statement": 12,
+      "value": "0x4"
+    },
+    "648": {
+      "fn": "ERC20.symbol",
+      "offset": [
+        2348,
+        2362
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "649": {
+      "fn": "ERC20.symbol",
+      "offset": [
+        2348,
+        2362
+      ],
+      "op": "SLOAD",
+      "path": "1"
+    },
+    "650": {
+      "fn": "ERC20.symbol",
+      "offset": [
+        2348,
+        2362
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x1AE"
+    },
+    "653": {
+      "fn": "ERC20.symbol",
+      "offset": [
+        2348,
+        2362
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "654": {
+      "fn": "ERC20.symbol",
+      "offset": [
+        2348,
+        2362
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x6F3"
+    },
+    "657": {
+      "fn": "ERC20.symbol",
+      "jump": "i",
+      "offset": [
+        2348,
+        2362
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "658": {
+      "fn": "ERC20.transfer",
+      "offset": [
+        3610,
+        3788
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "659": {
+      "fn": "ERC20.transfer",
+      "offset": [
+        3679,
+        3683
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "661": {
+      "fn": "Context._msgSender",
+      "offset": [
+        735,
+        745
+      ],
+      "op": "CALLER",
+      "path": "4"
+    },
+    "662": {
+      "fn": "ERC20.transfer",
+      "offset": [
+        3733,
+        3760
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "statement": 13,
+      "value": "0x23F"
+    },
+    "665": {
+      "fn": "Context._msgSender",
+      "offset": [
+        735,
+        745
+      ],
+      "op": "DUP2",
+      "path": "4"
+    },
+    "666": {
+      "fn": "ERC20.transfer",
+      "offset": [
+        3750,
+        3752
+      ],
+      "op": "DUP6",
+      "path": "1"
+    },
+    "667": {
+      "fn": "ERC20.transfer",
+      "offset": [
+        3754,
+        3759
+      ],
+      "op": "DUP6",
+      "path": "1"
+    },
+    "668": {
+      "fn": "ERC20.transfer",
+      "offset": [
+        3733,
+        3742
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x36F"
+    },
+    "671": {
+      "fn": "ERC20.transfer",
+      "jump": "i",
+      "offset": [
+        3733,
+        3760
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "672": {
+      "fn": "ERC20._approve",
+      "offset": [
+        8989,
+        9117
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "673": {
+      "fn": "ERC20._approve",
+      "offset": [
+        9073,
+        9110
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "statement": 14,
+      "value": "0x2AD"
+    },
+    "676": {
+      "fn": "ERC20._approve",
+      "offset": [
+        9082,
+        9087
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "677": {
+      "fn": "ERC20._approve",
+      "offset": [
+        9089,
+        9096
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "678": {
+      "fn": "ERC20._approve",
+      "offset": [
+        9098,
+        9103
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "679": {
+      "fn": "ERC20._approve",
+      "offset": [
+        9105,
+        9109
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x1"
+    },
+    "681": {
+      "fn": "ERC20._approve",
+      "offset": [
+        9073,
+        9081
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x3CE"
+    },
+    "684": {
+      "fn": "ERC20._approve",
+      "jump": "i",
+      "offset": [
+        9073,
+        9110
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "685": {
+      "fn": "ERC20._approve",
+      "offset": [
+        9073,
+        9110
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "686": {
+      "fn": "ERC20._approve",
+      "offset": [
+        8989,
+        9117
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "687": {
+      "fn": "ERC20._approve",
+      "offset": [
+        8989,
+        9117
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "688": {
+      "fn": "ERC20._approve",
+      "offset": [
+        8989,
+        9117
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "689": {
+      "fn": "ERC20._approve",
+      "jump": "o",
+      "offset": [
+        8989,
+        9117
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "690": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7721,
+        7929
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "691": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "693": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "695": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "697": {
+      "op": "SHL"
+    },
+    "698": {
+      "op": "SUB"
+    },
+    "699": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7791,
+        7812
+      ],
+      "op": "DUP3",
+      "path": "1",
+      "statement": 15
+    },
+    "700": {
+      "branch": 32,
+      "fn": "ERC20._mint",
+      "offset": [
+        7791,
+        7812
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "701": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7787,
+        7878
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x2E1"
+    },
+    "704": {
+      "branch": 32,
+      "fn": "ERC20._mint",
+      "offset": [
+        7787,
+        7878
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "705": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7835,
+        7867
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "707": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7835,
+        7867
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "708": {
+      "op": "PUSH4",
+      "value": "0xEC442F05"
+    },
+    "713": {
+      "op": "PUSH1",
+      "value": "0xE0"
+    },
+    "715": {
+      "op": "SHL"
+    },
+    "716": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7835,
+        7867
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "717": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7835,
+        7867
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "718": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7864,
+        7865
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "720": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7835,
+        7867
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x4"
+    },
+    "722": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7835,
+        7867
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "723": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7835,
+        7867
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "724": {
+      "op": "MSTORE"
+    },
+    "725": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "727": {
+      "op": "ADD"
+    },
+    "728": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7835,
+        7867
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "729": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7835,
+        7867
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "731": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7835,
+        7867
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "732": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7835,
+        7867
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "733": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7835,
+        7867
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "734": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7835,
+        7867
+      ],
+      "op": "SUB",
+      "path": "1"
+    },
+    "735": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7835,
+        7867
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "736": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7835,
+        7867
+      ],
+      "op": "REVERT",
+      "path": "1"
+    },
+    "737": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7787,
+        7878
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "738": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7887,
+        7922
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "statement": 16,
+      "value": "0x2ED"
+    },
+    "741": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7903,
+        7904
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "743": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7907,
+        7914
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "744": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7916,
+        7921
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "745": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7887,
+        7894
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x4A3"
+    },
+    "748": {
+      "fn": "ERC20._mint",
+      "jump": "i",
+      "offset": [
+        7887,
+        7922
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "749": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7887,
+        7922
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "750": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7721,
+        7929
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "751": {
+      "fn": "ERC20._mint",
+      "offset": [
+        7721,
+        7929
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "752": {
+      "fn": "ERC20._mint",
+      "jump": "o",
+      "offset": [
+        7721,
+        7929
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "753": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10663,
+        11140
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "754": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "756": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "758": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "760": {
+      "op": "SHL"
+    },
+    "761": {
+      "op": "SUB"
+    },
+    "762": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "763": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "764": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "765": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10762,
+        10786
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "767": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "768": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "769": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "770": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3963
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x1"
+    },
+    "772": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x20"
+    },
+    "774": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "775": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "776": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "777": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "779": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "780": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "781": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3970
+      ],
+      "op": "KECCAK256",
+      "path": "1"
+    },
+    "782": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "SWAP4",
+      "path": "1"
+    },
+    "783": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "DUP7",
+      "path": "1"
+    },
+    "784": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "785": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "786": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "787": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "SWAP3",
+      "path": "1"
+    },
+    "788": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "789": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "790": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "KECCAK256",
+      "path": "1"
+    },
+    "791": {
+      "fn": "ERC20.allowance",
+      "offset": [
+        3952,
+        3979
+      ],
+      "op": "SLOAD",
+      "path": "1"
+    },
+    "792": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "794": {
+      "op": "NOT"
+    },
+    "795": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10828,
+        10865
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "796": {
+      "branch": 33,
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10828,
+        10865
+      ],
+      "op": "EQ",
+      "path": "1"
+    },
+    "797": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10824,
+        11134
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x369"
+    },
+    "800": {
+      "branch": 33,
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10824,
+        11134
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "801": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10904,
+        10909
+      ],
+      "op": "DUP2",
+      "path": "1",
+      "statement": 17
+    },
+    "802": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10885,
+        10901
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "803": {
+      "branch": 34,
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10885,
+        10909
+      ],
+      "op": "LT",
+      "path": "1"
+    },
+    "804": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10881,
+        11011
+      ],
+      "op": "ISZERO",
+      "path": "1"
+    },
+    "805": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10881,
+        11011
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x35A"
+    },
+    "808": {
+      "branch": 34,
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10881,
+        11011
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "809": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10936,
+        10996
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "811": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10936,
+        10996
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "812": {
+      "op": "PUSH4",
+      "value": "0x7DC7A0D9"
+    },
+    "817": {
+      "op": "PUSH1",
+      "value": "0xE1"
+    },
+    "819": {
+      "op": "SHL"
+    },
+    "820": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10936,
+        10996
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "821": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10936,
+        10996
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "822": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "824": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "826": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "828": {
+      "op": "SHL"
+    },
+    "829": {
+      "op": "SUB"
+    },
+    "830": {
+      "op": "DUP5"
+    },
+    "831": {
+      "op": "AND"
+    },
+    "832": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10936,
+        10996
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x4"
+    },
+    "834": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10936,
+        10996
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "835": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10936,
+        10996
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "836": {
+      "op": "MSTORE"
+    },
+    "837": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "839": {
+      "op": "DUP2"
+    },
+    "840": {
+      "op": "ADD"
+    },
+    "841": {
+      "op": "DUP3"
+    },
+    "842": {
+      "op": "SWAP1"
+    },
+    "843": {
+      "op": "MSTORE"
+    },
+    "844": {
+      "op": "PUSH1",
+      "value": "0x44"
+    },
+    "846": {
+      "op": "DUP2"
+    },
+    "847": {
+      "op": "ADD"
+    },
+    "848": {
+      "op": "DUP4"
+    },
+    "849": {
+      "op": "SWAP1"
+    },
+    "850": {
+      "op": "MSTORE"
+    },
+    "851": {
+      "op": "PUSH1",
+      "value": "0x64"
+    },
+    "853": {
+      "op": "ADD"
+    },
+    "854": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10936,
+        10996
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x2D8"
+    },
+    "857": {
+      "op": "JUMP"
+    },
+    "858": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10881,
+        11011
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "859": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        11052,
+        11109
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "statement": 18,
+      "value": "0x369"
+    },
+    "862": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        11061,
+        11066
+      ],
+      "op": "DUP5",
+      "path": "1"
+    },
+    "863": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        11068,
+        11075
+      ],
+      "op": "DUP5",
+      "path": "1"
+    },
+    "864": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        11096,
+        11101
+      ],
+      "op": "DUP5",
+      "path": "1"
+    },
+    "865": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        11077,
+        11093
+      ],
+      "op": "DUP5",
+      "path": "1"
+    },
+    "866": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        11077,
+        11101
+      ],
+      "op": "SUB",
+      "path": "1"
+    },
+    "867": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        11103,
+        11108
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "869": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        11052,
+        11060
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x3CE"
+    },
+    "872": {
+      "fn": "ERC20._spendAllowance",
+      "jump": "i",
+      "offset": [
+        11052,
+        11109
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "873": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        11052,
+        11109
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "874": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10752,
+        11140
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "875": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10663,
+        11140
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "876": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10663,
+        11140
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "877": {
+      "fn": "ERC20._spendAllowance",
+      "offset": [
+        10663,
+        11140
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "878": {
+      "fn": "ERC20._spendAllowance",
+      "jump": "o",
+      "offset": [
+        10663,
+        11140
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "879": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5656,
+        5956
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "880": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "882": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "884": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "886": {
+      "op": "SHL"
+    },
+    "887": {
+      "op": "SUB"
+    },
+    "888": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5739,
+        5757
+      ],
+      "op": "DUP4",
+      "path": "1",
+      "statement": 19
+    },
+    "889": {
+      "branch": 35,
+      "fn": "ERC20._transfer",
+      "offset": [
+        5739,
+        5757
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "890": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5735,
+        5821
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x399"
+    },
+    "893": {
+      "branch": 35,
+      "fn": "ERC20._transfer",
+      "offset": [
+        5735,
+        5821
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "894": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5780,
+        5810
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "896": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5780,
+        5810
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "897": {
+      "op": "PUSH4",
+      "value": "0x4B637E8F"
+    },
+    "902": {
+      "op": "PUSH1",
+      "value": "0xE1"
+    },
+    "904": {
+      "op": "SHL"
+    },
+    "905": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5780,
+        5810
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "906": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5780,
+        5810
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "907": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5807,
+        5808
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "909": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5780,
+        5810
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x4"
+    },
+    "911": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5780,
+        5810
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "912": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5780,
+        5810
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "913": {
+      "op": "MSTORE"
+    },
+    "914": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "916": {
+      "op": "ADD"
+    },
+    "917": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5780,
+        5810
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x2D8"
+    },
+    "920": {
+      "op": "JUMP"
+    },
+    "921": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5735,
+        5821
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "922": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "924": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "926": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "928": {
+      "op": "SHL"
+    },
+    "929": {
+      "op": "SUB"
+    },
+    "930": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5834,
+        5850
+      ],
+      "op": "DUP3",
+      "path": "1",
+      "statement": 20
+    },
+    "931": {
+      "branch": 36,
+      "fn": "ERC20._transfer",
+      "offset": [
+        5834,
+        5850
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "932": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5830,
+        5916
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x3C3"
+    },
+    "935": {
+      "branch": 36,
+      "fn": "ERC20._transfer",
+      "offset": [
+        5830,
+        5916
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "936": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5873,
+        5905
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "938": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5873,
+        5905
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "939": {
+      "op": "PUSH4",
+      "value": "0xEC442F05"
+    },
+    "944": {
+      "op": "PUSH1",
+      "value": "0xE0"
+    },
+    "946": {
+      "op": "SHL"
+    },
+    "947": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5873,
+        5905
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "948": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5873,
+        5905
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "949": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5902,
+        5903
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "951": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5873,
+        5905
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x4"
+    },
+    "953": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5873,
+        5905
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "954": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5873,
+        5905
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "955": {
+      "op": "MSTORE"
+    },
+    "956": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "958": {
+      "op": "ADD"
+    },
+    "959": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5873,
+        5905
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x2D8"
+    },
+    "962": {
+      "op": "JUMP"
+    },
+    "963": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5830,
+        5916
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "964": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5925,
+        5949
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "statement": 21,
+      "value": "0x2AD"
+    },
+    "967": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5933,
+        5937
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "968": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5939,
+        5941
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "969": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5943,
+        5948
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "970": {
+      "fn": "ERC20._transfer",
+      "offset": [
+        5925,
+        5932
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x4A3"
+    },
+    "973": {
+      "fn": "ERC20._transfer",
+      "jump": "i",
+      "offset": [
+        5925,
+        5949
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "974": {
+      "fn": "ERC20._approve",
+      "offset": [
+        9949,
+        10381
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "975": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "977": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "979": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "981": {
+      "op": "SHL"
+    },
+    "982": {
+      "op": "SUB"
+    },
+    "983": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10061,
+        10080
+      ],
+      "op": "DUP5",
+      "path": "1",
+      "statement": 22
+    },
+    "984": {
+      "branch": 37,
+      "fn": "ERC20._approve",
+      "offset": [
+        10061,
+        10080
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "985": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10057,
+        10146
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x3F8"
+    },
+    "988": {
+      "branch": 37,
+      "fn": "ERC20._approve",
+      "offset": [
+        10057,
+        10146
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "989": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10103,
+        10135
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "991": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10103,
+        10135
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "992": {
+      "op": "PUSH4",
+      "value": "0xE602DF05"
+    },
+    "997": {
+      "op": "PUSH1",
+      "value": "0xE0"
+    },
+    "999": {
+      "op": "SHL"
+    },
+    "1000": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10103,
+        10135
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "1001": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10103,
+        10135
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "1002": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10132,
+        10133
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "1004": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10103,
+        10135
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x4"
+    },
+    "1006": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10103,
+        10135
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "1007": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10103,
+        10135
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "1008": {
+      "op": "MSTORE"
+    },
+    "1009": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "1011": {
+      "op": "ADD"
+    },
+    "1012": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10103,
+        10135
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x2D8"
+    },
+    "1015": {
+      "op": "JUMP"
+    },
+    "1016": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10057,
+        10146
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "1017": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1019": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1021": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "1023": {
+      "op": "SHL"
+    },
+    "1024": {
+      "op": "SUB"
+    },
+    "1025": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10159,
+        10180
+      ],
+      "op": "DUP4",
+      "path": "1",
+      "statement": 23
+    },
+    "1026": {
+      "branch": 38,
+      "fn": "ERC20._approve",
+      "offset": [
+        10159,
+        10180
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "1027": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10155,
+        10245
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x422"
+    },
+    "1030": {
+      "branch": 38,
+      "fn": "ERC20._approve",
+      "offset": [
+        10155,
+        10245
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "1031": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10203,
+        10234
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "1033": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10203,
+        10234
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "1034": {
+      "op": "PUSH4",
+      "value": "0x4A1406B1"
+    },
+    "1039": {
+      "op": "PUSH1",
+      "value": "0xE1"
+    },
+    "1041": {
+      "op": "SHL"
+    },
+    "1042": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10203,
+        10234
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "1043": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10203,
+        10234
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "1044": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10231,
+        10232
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "1046": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10203,
+        10234
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x4"
+    },
+    "1048": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10203,
+        10234
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "1049": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10203,
+        10234
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "1050": {
+      "op": "MSTORE"
+    },
+    "1051": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "1053": {
+      "op": "ADD"
+    },
+    "1054": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10203,
+        10234
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x2D8"
+    },
+    "1057": {
+      "op": "JUMP"
+    },
+    "1058": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10155,
+        10245
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "1059": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1061": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1063": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "1065": {
+      "op": "SHL"
+    },
+    "1066": {
+      "op": "SUB"
+    },
+    "1067": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10272
+      ],
+      "op": "DUP1",
+      "path": "1",
+      "statement": 24
+    },
+    "1068": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10272
+      ],
+      "op": "DUP6",
+      "path": "1"
+    },
+    "1069": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10272
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "1070": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10272
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "1072": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10272
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1073": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10272
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "1074": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10272
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "1075": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10265
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x1"
+    },
+    "1077": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10272
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x20"
+    },
+    "1079": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10272
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1080": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10272
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "1081": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10272
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "1082": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10272
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "1084": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10272
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "1085": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10272
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "1086": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10272
+      ],
+      "op": "KECCAK256",
+      "path": "1"
+    },
+    "1087": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10281
+      ],
+      "op": "SWAP4",
+      "path": "1"
+    },
+    "1088": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10281
+      ],
+      "op": "DUP8",
+      "path": "1"
+    },
+    "1089": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10281
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "1090": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10281
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "1091": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10281
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "1092": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10281
+      ],
+      "op": "SWAP3",
+      "path": "1"
+    },
+    "1093": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10281
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1094": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10281
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "1095": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10281
+      ],
+      "op": "KECCAK256",
+      "path": "1"
+    },
+    "1096": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10289
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "1097": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10289
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1098": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10254,
+        10289
+      ],
+      "op": "SSTORE",
+      "path": "1"
+    },
+    "1099": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10299,
+        10375
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "1100": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10299,
+        10375
+      ],
+      "op": "ISZERO",
+      "path": "1"
+    },
+    "1101": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10299,
+        10375
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x369"
+    },
+    "1104": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10299,
+        10375
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "1105": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10349,
+        10356
+      ],
+      "op": "DUP3",
+      "path": "1",
+      "statement": 25
+    },
+    "1106": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1108": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1110": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "1112": {
+      "op": "SHL"
+    },
+    "1113": {
+      "op": "SUB"
+    },
+    "1114": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10333,
+        10364
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "1115": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10342,
+        10347
+      ],
+      "op": "DUP5",
+      "path": "1"
+    },
+    "1116": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1118": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1120": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "1122": {
+      "op": "SHL"
+    },
+    "1123": {
+      "op": "SUB"
+    },
+    "1124": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10333,
+        10364
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "1125": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10333,
+        10364
+      ],
+      "op": "PUSH32",
+      "path": "1",
+      "value": "0x8C5BE1E5EBEC7D5BD14F71427D1E84F3DD0314C0F7B2291E5B200AC8C7C3B925"
+    },
+    "1158": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10358,
+        10363
+      ],
+      "op": "DUP5",
+      "path": "1"
+    },
+    "1159": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10333,
+        10364
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "1161": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10333,
+        10364
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "1162": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10333,
+        10364
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x495"
+    },
+    "1165": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10333,
+        10364
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "1166": {
+      "op": "DUP2"
+    },
+    "1167": {
+      "op": "MSTORE"
+    },
+    "1168": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1170": {
+      "op": "ADD"
+    },
+    "1171": {
+      "op": "SWAP1"
+    },
+    "1172": {
+      "op": "JUMP"
+    },
+    "1173": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10333,
+        10364
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "1174": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10333,
+        10364
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "1176": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10333,
+        10364
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "1177": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10333,
+        10364
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "1178": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10333,
+        10364
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "1179": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10333,
+        10364
+      ],
+      "op": "SUB",
+      "path": "1"
+    },
+    "1180": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10333,
+        10364
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1181": {
+      "fn": "ERC20._approve",
+      "offset": [
+        10333,
+        10364
+      ],
+      "op": "LOG3",
+      "path": "1"
+    },
+    "1182": {
+      "fn": "ERC20._approve",
+      "offset": [
+        9949,
+        10381
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "1183": {
+      "fn": "ERC20._approve",
+      "offset": [
+        9949,
+        10381
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "1184": {
+      "fn": "ERC20._approve",
+      "offset": [
+        9949,
+        10381
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "1185": {
+      "fn": "ERC20._approve",
+      "offset": [
+        9949,
+        10381
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "1186": {
+      "fn": "ERC20._approve",
+      "jump": "o",
+      "offset": [
+        9949,
+        10381
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "1187": {
+      "fn": "ERC20._update",
+      "offset": [
+        6271,
+        7378
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "1188": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1190": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1192": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "1194": {
+      "op": "SHL"
+    },
+    "1195": {
+      "op": "SUB"
+    },
+    "1196": {
+      "fn": "ERC20._update",
+      "offset": [
+        6360,
+        6378
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "1197": {
+      "branch": 39,
+      "fn": "ERC20._update",
+      "offset": [
+        6360,
+        6378
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "1198": {
+      "fn": "ERC20._update",
+      "offset": [
+        6356,
+        6896
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x4CE"
+    },
+    "1201": {
+      "branch": 39,
+      "fn": "ERC20._update",
+      "offset": [
+        6356,
+        6896
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "1202": {
+      "fn": "ERC20._update",
+      "offset": [
+        6512,
+        6517
+      ],
+      "op": "DUP1",
+      "path": "1",
+      "statement": 26
+    },
+    "1203": {
+      "fn": "ERC20._update",
+      "offset": [
+        6496,
+        6508
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x2"
+    },
+    "1205": {
+      "fn": "ERC20._update",
+      "offset": [
+        6496,
+        6508
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "1207": {
+      "fn": "ERC20._update",
+      "offset": [
+        6496,
+        6517
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "1208": {
+      "fn": "ERC20._update",
+      "offset": [
+        6496,
+        6517
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "1209": {
+      "fn": "ERC20._update",
+      "offset": [
+        6496,
+        6517
+      ],
+      "op": "SLOAD",
+      "path": "1"
+    },
+    "1210": {
+      "fn": "ERC20._update",
+      "offset": [
+        6496,
+        6517
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x4C3"
+    },
+    "1213": {
+      "fn": "ERC20._update",
+      "offset": [
+        6496,
+        6517
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "1214": {
+      "fn": "ERC20._update",
+      "offset": [
+        6496,
+        6517
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1215": {
+      "fn": "ERC20._update",
+      "offset": [
+        6496,
+        6517
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x72D"
+    },
+    "1218": {
+      "fn": "ERC20._update",
+      "jump": "i",
+      "offset": [
+        6496,
+        6517
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "1219": {
+      "fn": "ERC20._update",
+      "offset": [
+        6496,
+        6517
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "1220": {
+      "fn": "ERC20._update",
+      "offset": [
+        6496,
+        6517
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1221": {
+      "fn": "ERC20._update",
+      "offset": [
+        6496,
+        6517
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "1222": {
+      "fn": "ERC20._update",
+      "offset": [
+        6496,
+        6517
+      ],
+      "op": "SSTORE",
+      "path": "1"
+    },
+    "1223": {
+      "op": "POP"
+    },
+    "1224": {
+      "fn": "ERC20._update",
+      "offset": [
+        6356,
+        6896
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x540"
+    },
+    "1227": {
+      "fn": "ERC20._update",
+      "offset": [
+        6356,
+        6896
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1228": {
+      "op": "POP"
+    },
+    "1229": {
+      "fn": "ERC20._update",
+      "offset": [
+        6356,
+        6896
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "1230": {
+      "fn": "ERC20._update",
+      "offset": [
+        6356,
+        6896
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "1231": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1233": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1235": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "1237": {
+      "op": "SHL"
+    },
+    "1238": {
+      "op": "SUB"
+    },
+    "1239": {
+      "fn": "ERC20._update",
+      "offset": [
+        6570,
+        6585
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "1240": {
+      "fn": "ERC20._update",
+      "offset": [
+        6570,
+        6585
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "1241": {
+      "fn": "ERC20._update",
+      "offset": [
+        6548,
+        6567
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "1243": {
+      "fn": "ERC20._update",
+      "offset": [
+        6570,
+        6585
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1244": {
+      "fn": "ERC20._update",
+      "offset": [
+        6570,
+        6585
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "1245": {
+      "fn": "ERC20._update",
+      "offset": [
+        6570,
+        6585
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "1246": {
+      "fn": "ERC20._update",
+      "offset": [
+        6570,
+        6585
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x20"
+    },
+    "1248": {
+      "fn": "ERC20._update",
+      "offset": [
+        6570,
+        6585
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "1249": {
+      "fn": "ERC20._update",
+      "offset": [
+        6570,
+        6585
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1250": {
+      "fn": "ERC20._update",
+      "offset": [
+        6570,
+        6585
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "1251": {
+      "fn": "ERC20._update",
+      "offset": [
+        6570,
+        6585
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "1253": {
+      "fn": "ERC20._update",
+      "offset": [
+        6570,
+        6585
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1254": {
+      "fn": "ERC20._update",
+      "offset": [
+        6570,
+        6585
+      ],
+      "op": "KECCAK256",
+      "path": "1"
+    },
+    "1255": {
+      "fn": "ERC20._update",
+      "offset": [
+        6570,
+        6585
+      ],
+      "op": "SLOAD",
+      "path": "1"
+    },
+    "1256": {
+      "fn": "ERC20._update",
+      "offset": [
+        6603,
+        6622
+      ],
+      "op": "DUP2",
+      "path": "1",
+      "statement": 27
+    },
+    "1257": {
+      "fn": "ERC20._update",
+      "offset": [
+        6603,
+        6622
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "1258": {
+      "branch": 40,
+      "fn": "ERC20._update",
+      "offset": [
+        6603,
+        6622
+      ],
+      "op": "LT",
+      "path": "1"
+    },
+    "1259": {
+      "fn": "ERC20._update",
+      "offset": [
+        6599,
+        6714
+      ],
+      "op": "ISZERO",
+      "path": "1"
+    },
+    "1260": {
+      "fn": "ERC20._update",
+      "offset": [
+        6599,
+        6714
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x521"
+    },
+    "1263": {
+      "branch": 40,
+      "fn": "ERC20._update",
+      "offset": [
+        6599,
+        6714
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "1264": {
+      "fn": "ERC20._update",
+      "offset": [
+        6649,
+        6699
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "1266": {
+      "fn": "ERC20._update",
+      "offset": [
+        6649,
+        6699
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "1267": {
+      "op": "PUSH4",
+      "value": "0x391434E3"
+    },
+    "1272": {
+      "op": "PUSH1",
+      "value": "0xE2"
+    },
+    "1274": {
+      "op": "SHL"
+    },
+    "1275": {
+      "fn": "ERC20._update",
+      "offset": [
+        6649,
+        6699
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "1276": {
+      "fn": "ERC20._update",
+      "offset": [
+        6649,
+        6699
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "1277": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1279": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1281": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "1283": {
+      "op": "SHL"
+    },
+    "1284": {
+      "op": "SUB"
+    },
+    "1285": {
+      "op": "DUP6"
+    },
+    "1286": {
+      "op": "AND"
+    },
+    "1287": {
+      "fn": "ERC20._update",
+      "offset": [
+        6649,
+        6699
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x4"
+    },
+    "1289": {
+      "fn": "ERC20._update",
+      "offset": [
+        6649,
+        6699
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "1290": {
+      "fn": "ERC20._update",
+      "offset": [
+        6649,
+        6699
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "1291": {
+      "op": "MSTORE"
+    },
+    "1292": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "1294": {
+      "op": "DUP2"
+    },
+    "1295": {
+      "op": "ADD"
+    },
+    "1296": {
+      "op": "DUP3"
+    },
+    "1297": {
+      "op": "SWAP1"
+    },
+    "1298": {
+      "op": "MSTORE"
+    },
+    "1299": {
+      "op": "PUSH1",
+      "value": "0x44"
+    },
+    "1301": {
+      "op": "DUP2"
+    },
+    "1302": {
+      "op": "ADD"
+    },
+    "1303": {
+      "op": "DUP4"
+    },
+    "1304": {
+      "op": "SWAP1"
+    },
+    "1305": {
+      "op": "MSTORE"
+    },
+    "1306": {
+      "op": "PUSH1",
+      "value": "0x64"
+    },
+    "1308": {
+      "op": "ADD"
+    },
+    "1309": {
+      "fn": "ERC20._update",
+      "offset": [
+        6649,
+        6699
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x2D8"
+    },
+    "1312": {
+      "op": "JUMP"
+    },
+    "1313": {
+      "fn": "ERC20._update",
+      "offset": [
+        6599,
+        6714
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "1314": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1316": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1318": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "1320": {
+      "op": "SHL"
+    },
+    "1321": {
+      "op": "SUB"
+    },
+    "1322": {
+      "fn": "ERC20._update",
+      "offset": [
+        6834,
+        6849
+      ],
+      "op": "DUP5",
+      "path": "1",
+      "statement": 28
+    },
+    "1323": {
+      "fn": "ERC20._update",
+      "offset": [
+        6834,
+        6849
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "1324": {
+      "fn": "ERC20._update",
+      "offset": [
+        6834,
+        6843
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "1326": {
+      "fn": "ERC20._update",
+      "offset": [
+        6834,
+        6849
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1327": {
+      "fn": "ERC20._update",
+      "offset": [
+        6834,
+        6849
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "1328": {
+      "fn": "ERC20._update",
+      "offset": [
+        6834,
+        6849
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "1329": {
+      "fn": "ERC20._update",
+      "offset": [
+        6834,
+        6849
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x20"
+    },
+    "1331": {
+      "fn": "ERC20._update",
+      "offset": [
+        6834,
+        6849
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "1332": {
+      "fn": "ERC20._update",
+      "offset": [
+        6834,
+        6849
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1333": {
+      "fn": "ERC20._update",
+      "offset": [
+        6834,
+        6849
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "1334": {
+      "fn": "ERC20._update",
+      "offset": [
+        6834,
+        6849
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "1336": {
+      "fn": "ERC20._update",
+      "offset": [
+        6834,
+        6849
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1337": {
+      "fn": "ERC20._update",
+      "offset": [
+        6834,
+        6849
+      ],
+      "op": "KECCAK256",
+      "path": "1"
+    },
+    "1338": {
+      "fn": "ERC20._update",
+      "offset": [
+        6852,
+        6871
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1339": {
+      "fn": "ERC20._update",
+      "offset": [
+        6852,
+        6871
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "1340": {
+      "fn": "ERC20._update",
+      "offset": [
+        6852,
+        6871
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1341": {
+      "fn": "ERC20._update",
+      "offset": [
+        6852,
+        6871
+      ],
+      "op": "SUB",
+      "path": "1"
+    },
+    "1342": {
+      "fn": "ERC20._update",
+      "offset": [
+        6834,
+        6871
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1343": {
+      "fn": "ERC20._update",
+      "offset": [
+        6834,
+        6871
+      ],
+      "op": "SSTORE",
+      "path": "1"
+    },
+    "1344": {
+      "fn": "ERC20._update",
+      "offset": [
+        6356,
+        6896
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "1345": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1347": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1349": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "1351": {
+      "op": "SHL"
+    },
+    "1352": {
+      "op": "SUB"
+    },
+    "1353": {
+      "fn": "ERC20._update",
+      "offset": [
+        6910,
+        6926
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "1354": {
+      "branch": 41,
+      "fn": "ERC20._update",
+      "offset": [
+        6910,
+        6926
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "1355": {
+      "fn": "ERC20._update",
+      "offset": [
+        6906,
+        7331
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x55C"
+    },
+    "1358": {
+      "branch": 41,
+      "fn": "ERC20._update",
+      "offset": [
+        6906,
+        7331
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "1359": {
+      "fn": "ERC20._update",
+      "offset": [
+        7073,
+        7085
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "statement": 29,
+      "value": "0x2"
+    },
+    "1361": {
+      "fn": "ERC20._update",
+      "offset": [
+        7073,
+        7094
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "1362": {
+      "fn": "ERC20._update",
+      "offset": [
+        7073,
+        7094
+      ],
+      "op": "SLOAD",
+      "path": "1"
+    },
+    "1363": {
+      "fn": "ERC20._update",
+      "offset": [
+        7073,
+        7094
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "1364": {
+      "fn": "ERC20._update",
+      "offset": [
+        7073,
+        7094
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1365": {
+      "fn": "ERC20._update",
+      "offset": [
+        7073,
+        7094
+      ],
+      "op": "SUB",
+      "path": "1"
+    },
+    "1366": {
+      "fn": "ERC20._update",
+      "offset": [
+        7073,
+        7094
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1367": {
+      "fn": "ERC20._update",
+      "offset": [
+        7073,
+        7094
+      ],
+      "op": "SSTORE",
+      "path": "1"
+    },
+    "1368": {
+      "fn": "ERC20._update",
+      "offset": [
+        6906,
+        7331
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x57B"
+    },
+    "1371": {
+      "fn": "ERC20._update",
+      "offset": [
+        6906,
+        7331
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "1372": {
+      "fn": "ERC20._update",
+      "offset": [
+        6906,
+        7331
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "1373": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1375": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1377": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "1379": {
+      "op": "SHL"
+    },
+    "1380": {
+      "op": "SUB"
+    },
+    "1381": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7297
+      ],
+      "op": "DUP3",
+      "path": "1",
+      "statement": 30
+    },
+    "1382": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7297
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "1383": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7293
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "1385": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7297
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1386": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7297
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "1387": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7297
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "1388": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7297
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x20"
+    },
+    "1390": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7297
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "1391": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7297
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1392": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7297
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "1393": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7297
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "1395": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7297
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1396": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7297
+      ],
+      "op": "KECCAK256",
+      "path": "1"
+    },
+    "1397": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7306
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "1398": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7306
+      ],
+      "op": "SLOAD",
+      "path": "1"
+    },
+    "1399": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7306
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "1400": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7306
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "1401": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7306
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1402": {
+      "fn": "ERC20._update",
+      "offset": [
+        7284,
+        7306
+      ],
+      "op": "SSTORE",
+      "path": "1"
+    },
+    "1403": {
+      "fn": "ERC20._update",
+      "offset": [
+        6906,
+        7331
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "1404": {
+      "fn": "ERC20._update",
+      "offset": [
+        7361,
+        7363
+      ],
+      "op": "DUP2",
+      "path": "1",
+      "statement": 31
+    },
+    "1405": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1407": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1409": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "1411": {
+      "op": "SHL"
+    },
+    "1412": {
+      "op": "SUB"
+    },
+    "1413": {
+      "fn": "ERC20._update",
+      "offset": [
+        7346,
+        7371
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "1414": {
+      "fn": "ERC20._update",
+      "offset": [
+        7355,
+        7359
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "1415": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1417": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1419": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "1421": {
+      "op": "SHL"
+    },
+    "1422": {
+      "op": "SUB"
+    },
+    "1423": {
+      "fn": "ERC20._update",
+      "offset": [
+        7346,
+        7371
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "1424": {
+      "fn": "ERC20._update",
+      "offset": [
+        7346,
+        7371
+      ],
+      "op": "PUSH32",
+      "path": "1",
+      "value": "0xDDF252AD1BE2C89B69C2B068FC378DAA952BA7F163C4A11628F55A4DF523B3EF"
+    },
+    "1457": {
+      "fn": "ERC20._update",
+      "offset": [
+        7365,
+        7370
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "1458": {
+      "fn": "ERC20._update",
+      "offset": [
+        7346,
+        7371
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "1460": {
+      "fn": "ERC20._update",
+      "offset": [
+        7346,
+        7371
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "1461": {
+      "fn": "ERC20._update",
+      "offset": [
+        7346,
+        7371
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x5C0"
+    },
+    "1464": {
+      "fn": "ERC20._update",
+      "offset": [
+        7346,
+        7371
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "1465": {
+      "op": "DUP2"
+    },
+    "1466": {
+      "op": "MSTORE"
+    },
+    "1467": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1469": {
+      "op": "ADD"
+    },
+    "1470": {
+      "op": "SWAP1"
+    },
+    "1471": {
+      "op": "JUMP"
+    },
+    "1472": {
+      "fn": "ERC20._update",
+      "offset": [
+        7346,
+        7371
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "1473": {
+      "fn": "ERC20._update",
+      "offset": [
+        7346,
+        7371
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "1475": {
+      "fn": "ERC20._update",
+      "offset": [
+        7346,
+        7371
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "1476": {
+      "fn": "ERC20._update",
+      "offset": [
+        7346,
+        7371
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "1477": {
+      "fn": "ERC20._update",
+      "offset": [
+        7346,
+        7371
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "1478": {
+      "fn": "ERC20._update",
+      "offset": [
+        7346,
+        7371
+      ],
+      "op": "SUB",
+      "path": "1"
+    },
+    "1479": {
+      "fn": "ERC20._update",
+      "offset": [
+        7346,
+        7371
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "1480": {
+      "fn": "ERC20._update",
+      "offset": [
+        7346,
+        7371
+      ],
+      "op": "LOG3",
+      "path": "1"
+    },
+    "1481": {
+      "fn": "ERC20._update",
+      "offset": [
+        6271,
+        7378
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "1482": {
+      "fn": "ERC20._update",
+      "offset": [
+        6271,
+        7378
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "1483": {
+      "fn": "ERC20._update",
+      "offset": [
+        6271,
+        7378
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "1484": {
+      "fn": "ERC20._update",
+      "jump": "o",
+      "offset": [
+        6271,
+        7378
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "1485": {
+      "op": "JUMPDEST"
+    },
+    "1486": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1488": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1490": {
+      "op": "DUP1"
+    },
+    "1491": {
+      "op": "DUP4"
+    },
+    "1492": {
+      "op": "MSTORE"
+    },
+    "1493": {
+      "op": "DUP4"
+    },
+    "1494": {
+      "op": "MLOAD"
+    },
+    "1495": {
+      "op": "DUP1"
+    },
+    "1496": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1498": {
+      "op": "DUP6"
+    },
+    "1499": {
+      "op": "ADD"
+    },
+    "1500": {
+      "op": "MSTORE"
+    },
+    "1501": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1503": {
+      "op": "JUMPDEST"
+    },
+    "1504": {
+      "op": "DUP2"
+    },
+    "1505": {
+      "op": "DUP2"
+    },
+    "1506": {
+      "op": "LT"
+    },
+    "1507": {
+      "op": "ISZERO"
+    },
+    "1508": {
+      "op": "PUSH2",
+      "value": "0x5FB"
+    },
+    "1511": {
+      "op": "JUMPI"
+    },
+    "1512": {
+      "op": "DUP6"
+    },
+    "1513": {
+      "op": "DUP2"
+    },
+    "1514": {
+      "op": "ADD"
+    },
+    "1515": {
+      "op": "DUP4"
+    },
+    "1516": {
+      "op": "ADD"
+    },
+    "1517": {
+      "op": "MLOAD"
+    },
+    "1518": {
+      "op": "DUP6"
+    },
+    "1519": {
+      "op": "DUP3"
+    },
+    "1520": {
+      "op": "ADD"
+    },
+    "1521": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "1523": {
+      "op": "ADD"
+    },
+    "1524": {
+      "op": "MSTORE"
+    },
+    "1525": {
+      "op": "DUP3"
+    },
+    "1526": {
+      "op": "ADD"
+    },
+    "1527": {
+      "op": "PUSH2",
+      "value": "0x5DF"
+    },
+    "1530": {
+      "op": "JUMP"
+    },
+    "1531": {
+      "op": "JUMPDEST"
+    },
+    "1532": {
+      "op": "POP"
+    },
+    "1533": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1535": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "1537": {
+      "op": "DUP3"
+    },
+    "1538": {
+      "op": "DUP7"
+    },
+    "1539": {
+      "op": "ADD"
+    },
+    "1540": {
+      "op": "ADD"
+    },
+    "1541": {
+      "op": "MSTORE"
+    },
+    "1542": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "1544": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "1546": {
+      "op": "NOT"
+    },
+    "1547": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "1549": {
+      "op": "DUP4"
+    },
+    "1550": {
+      "op": "ADD"
+    },
+    "1551": {
+      "op": "AND"
+    },
+    "1552": {
+      "op": "DUP6"
+    },
+    "1553": {
+      "op": "ADD"
+    },
+    "1554": {
+      "op": "ADD"
+    },
+    "1555": {
+      "op": "SWAP3"
+    },
+    "1556": {
+      "op": "POP"
+    },
+    "1557": {
+      "op": "POP"
+    },
+    "1558": {
+      "op": "POP"
+    },
+    "1559": {
+      "op": "SWAP3"
+    },
+    "1560": {
+      "op": "SWAP2"
+    },
+    "1561": {
+      "op": "POP"
+    },
+    "1562": {
+      "op": "POP"
+    },
+    "1563": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "1564": {
+      "op": "JUMPDEST"
+    },
+    "1565": {
+      "op": "DUP1"
+    },
+    "1566": {
+      "op": "CALLDATALOAD"
+    },
+    "1567": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1569": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1571": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "1573": {
+      "op": "SHL"
+    },
+    "1574": {
+      "op": "SUB"
+    },
+    "1575": {
+      "op": "DUP2"
+    },
+    "1576": {
+      "op": "AND"
+    },
+    "1577": {
+      "op": "DUP2"
+    },
+    "1578": {
+      "op": "EQ"
+    },
+    "1579": {
+      "op": "PUSH2",
+      "value": "0x633"
+    },
+    "1582": {
+      "op": "JUMPI"
+    },
+    "1583": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1585": {
+      "op": "DUP1"
+    },
+    "1586": {
+      "op": "REVERT"
+    },
+    "1587": {
+      "op": "JUMPDEST"
+    },
+    "1588": {
+      "op": "SWAP2"
+    },
+    "1589": {
+      "op": "SWAP1"
+    },
+    "1590": {
+      "op": "POP"
+    },
+    "1591": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "1592": {
+      "op": "JUMPDEST"
+    },
+    "1593": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1595": {
+      "op": "DUP1"
+    },
+    "1596": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "1598": {
+      "op": "DUP4"
+    },
+    "1599": {
+      "op": "DUP6"
+    },
+    "1600": {
+      "op": "SUB"
+    },
+    "1601": {
+      "op": "SLT"
+    },
+    "1602": {
+      "op": "ISZERO"
+    },
+    "1603": {
+      "op": "PUSH2",
+      "value": "0x64B"
+    },
+    "1606": {
+      "op": "JUMPI"
+    },
+    "1607": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1609": {
+      "op": "DUP1"
+    },
+    "1610": {
+      "op": "REVERT"
+    },
+    "1611": {
+      "op": "JUMPDEST"
+    },
+    "1612": {
+      "op": "PUSH2",
+      "value": "0x654"
+    },
+    "1615": {
+      "op": "DUP4"
+    },
+    "1616": {
+      "op": "PUSH2",
+      "value": "0x61C"
+    },
+    "1619": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "1620": {
+      "op": "JUMPDEST"
+    },
+    "1621": {
+      "op": "SWAP5"
+    },
+    "1622": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1624": {
+      "op": "SWAP4"
+    },
+    "1625": {
+      "op": "SWAP1"
+    },
+    "1626": {
+      "op": "SWAP4"
+    },
+    "1627": {
+      "op": "ADD"
+    },
+    "1628": {
+      "op": "CALLDATALOAD"
+    },
+    "1629": {
+      "op": "SWAP4"
+    },
+    "1630": {
+      "op": "POP"
+    },
+    "1631": {
+      "op": "POP"
+    },
+    "1632": {
+      "op": "POP"
+    },
+    "1633": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "1634": {
+      "op": "JUMPDEST"
+    },
+    "1635": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1637": {
+      "op": "DUP1"
+    },
+    "1638": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1640": {
+      "op": "PUSH1",
+      "value": "0x60"
+    },
+    "1642": {
+      "op": "DUP5"
+    },
+    "1643": {
+      "op": "DUP7"
+    },
+    "1644": {
+      "op": "SUB"
+    },
+    "1645": {
+      "op": "SLT"
+    },
+    "1646": {
+      "op": "ISZERO"
+    },
+    "1647": {
+      "op": "PUSH2",
+      "value": "0x677"
+    },
+    "1650": {
+      "op": "JUMPI"
+    },
+    "1651": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1653": {
+      "op": "DUP1"
+    },
+    "1654": {
+      "op": "REVERT"
+    },
+    "1655": {
+      "op": "JUMPDEST"
+    },
+    "1656": {
+      "op": "PUSH2",
+      "value": "0x680"
+    },
+    "1659": {
+      "op": "DUP5"
+    },
+    "1660": {
+      "op": "PUSH2",
+      "value": "0x61C"
+    },
+    "1663": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "1664": {
+      "op": "JUMPDEST"
+    },
+    "1665": {
+      "op": "SWAP3"
+    },
+    "1666": {
+      "op": "POP"
+    },
+    "1667": {
+      "op": "PUSH2",
+      "value": "0x68E"
+    },
+    "1670": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1672": {
+      "op": "DUP6"
+    },
+    "1673": {
+      "op": "ADD"
+    },
+    "1674": {
+      "op": "PUSH2",
+      "value": "0x61C"
+    },
+    "1677": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "1678": {
+      "op": "JUMPDEST"
+    },
+    "1679": {
+      "op": "SWAP2"
+    },
+    "1680": {
+      "op": "POP"
+    },
+    "1681": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "1683": {
+      "op": "DUP5"
+    },
+    "1684": {
+      "op": "ADD"
+    },
+    "1685": {
+      "op": "CALLDATALOAD"
+    },
+    "1686": {
+      "op": "SWAP1"
+    },
+    "1687": {
+      "op": "POP"
+    },
+    "1688": {
+      "op": "SWAP3"
+    },
+    "1689": {
+      "op": "POP"
+    },
+    "1690": {
+      "op": "SWAP3"
+    },
+    "1691": {
+      "op": "POP"
+    },
+    "1692": {
+      "op": "SWAP3"
+    },
+    "1693": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "1694": {
+      "op": "JUMPDEST"
+    },
+    "1695": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1697": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1699": {
+      "op": "DUP3"
+    },
+    "1700": {
+      "op": "DUP5"
+    },
+    "1701": {
+      "op": "SUB"
+    },
+    "1702": {
+      "op": "SLT"
+    },
+    "1703": {
+      "op": "ISZERO"
+    },
+    "1704": {
+      "op": "PUSH2",
+      "value": "0x6B0"
+    },
+    "1707": {
+      "op": "JUMPI"
+    },
+    "1708": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1710": {
+      "op": "DUP1"
+    },
+    "1711": {
+      "op": "REVERT"
+    },
+    "1712": {
+      "op": "JUMPDEST"
+    },
+    "1713": {
+      "op": "PUSH2",
+      "value": "0x6B9"
+    },
+    "1716": {
+      "op": "DUP3"
+    },
+    "1717": {
+      "op": "PUSH2",
+      "value": "0x61C"
+    },
+    "1720": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "1721": {
+      "op": "JUMPDEST"
+    },
+    "1722": {
+      "op": "SWAP4"
+    },
+    "1723": {
+      "op": "SWAP3"
+    },
+    "1724": {
+      "op": "POP"
+    },
+    "1725": {
+      "op": "POP"
+    },
+    "1726": {
+      "op": "POP"
+    },
+    "1727": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "1728": {
+      "op": "JUMPDEST"
+    },
+    "1729": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1731": {
+      "op": "DUP1"
+    },
+    "1732": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "1734": {
+      "op": "DUP4"
+    },
+    "1735": {
+      "op": "DUP6"
+    },
+    "1736": {
+      "op": "SUB"
+    },
+    "1737": {
+      "op": "SLT"
+    },
+    "1738": {
+      "op": "ISZERO"
+    },
+    "1739": {
+      "op": "PUSH2",
+      "value": "0x6D3"
+    },
+    "1742": {
+      "op": "JUMPI"
+    },
+    "1743": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1745": {
+      "op": "DUP1"
+    },
+    "1746": {
+      "op": "REVERT"
+    },
+    "1747": {
+      "op": "JUMPDEST"
+    },
+    "1748": {
+      "op": "PUSH2",
+      "value": "0x6DC"
+    },
+    "1751": {
+      "op": "DUP4"
+    },
+    "1752": {
+      "op": "PUSH2",
+      "value": "0x61C"
+    },
+    "1755": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "1756": {
+      "op": "JUMPDEST"
+    },
+    "1757": {
+      "op": "SWAP2"
+    },
+    "1758": {
+      "op": "POP"
+    },
+    "1759": {
+      "op": "PUSH2",
+      "value": "0x6EA"
+    },
+    "1762": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1764": {
+      "op": "DUP5"
+    },
+    "1765": {
+      "op": "ADD"
+    },
+    "1766": {
+      "op": "PUSH2",
+      "value": "0x61C"
+    },
+    "1769": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "1770": {
+      "op": "JUMPDEST"
+    },
+    "1771": {
+      "op": "SWAP1"
+    },
+    "1772": {
+      "op": "POP"
+    },
+    "1773": {
+      "op": "SWAP3"
+    },
+    "1774": {
+      "op": "POP"
+    },
+    "1775": {
+      "op": "SWAP3"
+    },
+    "1776": {
+      "op": "SWAP1"
+    },
+    "1777": {
+      "op": "POP"
+    },
+    "1778": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "1779": {
+      "op": "JUMPDEST"
+    },
+    "1780": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1782": {
+      "op": "DUP2"
+    },
+    "1783": {
+      "op": "DUP2"
+    },
+    "1784": {
+      "op": "SHR"
+    },
+    "1785": {
+      "op": "SWAP1"
+    },
+    "1786": {
+      "op": "DUP3"
+    },
+    "1787": {
+      "op": "AND"
+    },
+    "1788": {
+      "op": "DUP1"
+    },
+    "1789": {
+      "op": "PUSH2",
+      "value": "0x707"
+    },
+    "1792": {
+      "op": "JUMPI"
+    },
+    "1793": {
+      "op": "PUSH1",
+      "value": "0x7F"
+    },
+    "1795": {
+      "op": "DUP3"
+    },
+    "1796": {
+      "op": "AND"
+    },
+    "1797": {
+      "op": "SWAP2"
+    },
+    "1798": {
+      "op": "POP"
+    },
+    "1799": {
+      "op": "JUMPDEST"
+    },
+    "1800": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1802": {
+      "op": "DUP3"
+    },
+    "1803": {
+      "op": "LT"
+    },
+    "1804": {
+      "op": "DUP2"
+    },
+    "1805": {
+      "op": "SUB"
+    },
+    "1806": {
+      "op": "PUSH2",
+      "value": "0x727"
+    },
+    "1809": {
+      "op": "JUMPI"
+    },
+    "1810": {
+      "op": "PUSH4",
+      "value": "0x4E487B71"
+    },
+    "1815": {
+      "op": "PUSH1",
+      "value": "0xE0"
+    },
+    "1817": {
+      "op": "SHL"
+    },
+    "1818": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1820": {
+      "op": "MSTORE"
+    },
+    "1821": {
+      "op": "PUSH1",
+      "value": "0x22"
+    },
+    "1823": {
+      "op": "PUSH1",
+      "value": "0x4"
+    },
+    "1825": {
+      "op": "MSTORE"
+    },
+    "1826": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "1828": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1830": {
+      "op": "REVERT"
+    },
+    "1831": {
+      "op": "JUMPDEST"
+    },
+    "1832": {
+      "op": "POP"
+    },
+    "1833": {
+      "op": "SWAP2"
+    },
+    "1834": {
+      "op": "SWAP1"
+    },
+    "1835": {
+      "op": "POP"
+    },
+    "1836": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "1837": {
+      "op": "JUMPDEST"
+    },
+    "1838": {
+      "op": "DUP1"
+    },
+    "1839": {
+      "op": "DUP3"
+    },
+    "1840": {
+      "op": "ADD"
+    },
+    "1841": {
+      "op": "DUP1"
+    },
+    "1842": {
+      "op": "DUP3"
+    },
+    "1843": {
+      "op": "GT"
+    },
+    "1844": {
+      "op": "ISZERO"
+    },
+    "1845": {
+      "op": "PUSH2",
+      "value": "0x245"
+    },
+    "1848": {
+      "op": "JUMPI"
+    },
+    "1849": {
+      "op": "PUSH4",
+      "value": "0x4E487B71"
+    },
+    "1854": {
+      "op": "PUSH1",
+      "value": "0xE0"
+    },
+    "1856": {
+      "op": "SHL"
+    },
+    "1857": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1859": {
+      "op": "MSTORE"
+    },
+    "1860": {
+      "op": "PUSH1",
+      "value": "0x11"
+    },
+    "1862": {
+      "op": "PUSH1",
+      "value": "0x4"
+    },
+    "1864": {
+      "op": "MSTORE"
+    },
+    "1865": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "1867": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1869": {
+      "op": "REVERT"
+    }
+  },
+  "sha1": "e4d330eb04359aefc2722a1116bc041a73c34d61",
+  "source": "pragma solidity >=0.8.2 <0.9.0;\n\nimport {ERC20} from \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\n\ncontract ForumUSD is ERC20 {\n\n    constructor() ERC20(\"ForumUSD\", \"FUSD\") {}\n\n    function mint() external{\n        _mint(msg.sender, 5 ether);\n    }\n\n}",
+  "sourceMap": "103:152:5:-:0;;;137:42;;;;;;;;;;1896:113:1;;;;;;;;;;;;;-1:-1:-1;;;1896:113:1;;;;;;;;;;;;;;;;-1:-1:-1;;;1896:113:1;;;1970:5;1962;:13;;;;;;:::i;:::-;-1:-1:-1;1985:7:1;:17;1995:7;1985;:17;:::i;:::-;;1896:113;;103:152:5;;14:127:6;75:10;70:3;66:20;63:1;56:31;106:4;103:1;96:15;130:4;127:1;120:15;146:380;225:1;221:12;;;;268;;;289:61;;343:4;335:6;331:17;321:27;;289:61;396:2;388:6;385:14;365:18;362:38;359:161;;442:10;437:3;433:20;430:1;423:31;477:4;474:1;467:15;505:4;502:1;495:15;359:161;;146:380;;;:::o;657:543::-;759:2;754:3;751:11;748:446;;;795:1;819:5;816:1;809:16;863:4;860:1;850:18;933:2;921:10;917:19;914:1;910:27;904:4;900:38;969:4;957:10;954:20;951:47;;;-1:-1:-1;992:4:6;951:47;1047:2;1042:3;1038:12;1035:1;1031:20;1025:4;1021:31;1011:41;;1102:82;1120:2;1113:5;1110:13;1102:82;;;1165:17;;;1146:1;1135:13;1102:82;;;1106:3;;;748:446;657:543;;;:::o;1376:1345::-;1496:10;;-1:-1:-1;;;;;1518:30:6;;1515:56;;;1551:18;;:::i;:::-;1580:97;1670:6;1630:38;1662:4;1656:11;1630:38;:::i;:::-;1624:4;1580:97;:::i;:::-;1732:4;;1789:2;1778:14;;1806:1;1801:663;;;;2508:1;2525:6;2522:89;;;-1:-1:-1;2577:19:6;;;2571:26;2522:89;-1:-1:-1;;1333:1:6;1329:11;;;1325:24;1321:29;1311:40;1357:1;1353:11;;;1308:57;2624:81;;1771:944;;1801:663;604:1;597:14;;;641:4;628:18;;-1:-1:-1;;1837:20:6;;;1955:236;1969:7;1966:1;1963:14;1955:236;;;2058:19;;;2052:26;2037:42;;2150:27;;;;2118:1;2106:14;;;;1985:19;;1955:236;;;1959:3;2219:6;2210:7;2207:19;2204:201;;;2280:19;;;2274:26;-1:-1:-1;;2363:1:6;2359:14;;;2375:3;2355:24;2351:37;2347:42;2332:58;2317:74;;2204:201;-1:-1:-1;;;;;2451:1:6;2435:14;;;2431:22;2418:36;;-1:-1:-1;1376:1345:6:o;:::-;103:152:5;;;;;;",
+  "sourcePath": "contracts/PaymentToken.sol",
+  "type": "contract"
+}
