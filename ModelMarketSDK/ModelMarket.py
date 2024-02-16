@@ -93,6 +93,7 @@ class GPT4ModelMarket:
         return int(''.join(random.choices(string.digits, k=10)))
 
     # sends the chat to the node
+    @staticmethod
     def create_completion(self, chat, node_url, unique_code):
 
         data = {
@@ -146,3 +147,19 @@ class GPT4ModelMarket:
                 return "Timeout!"
         return resp
 
+    @staticmethod
+    def check_if_additional_tokens_necessary(self, total_output_tokens, chat) -> int:
+        """
+        Checks if the output tokens are enough for a given input (max 15 * input chars than max output tokens allowed) and
+        returns how many additional output tokens are required for the generation to work
+
+        Args:
+            total_output_tokens - int, max number of output tokens of AI response, also influences max number of input chars
+            chat - list [{"role": "user", "content": "Lorem ipsum"}, ...], represents the input chat
+        Return:
+            int - additional tokens needed
+        """
+        inp = ""
+        for c in chat:
+            inp += c["content"]
+        return max((int(len(inp) / 15) + 5) - total_output_tokens, 0)

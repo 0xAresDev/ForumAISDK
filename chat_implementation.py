@@ -22,6 +22,7 @@ while cont:
         break
     else:
         chat.append({"role": "user", "content": text})
-        resp = model_market.generate(1000, chat)
+        additional_tokens = model_market.check_if_additional_tokens_necessary(100, chat)
+        resp = model_market.generate(100+additional_tokens, chat)
         print(resp)
         chat.append({"role": "assistant", "content": resp})
