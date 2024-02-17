@@ -94,7 +94,7 @@ class GPT4ModelMarket:
 
     # sends the chat to the node
     @staticmethod
-    def create_completion(self, chat, node_url, unique_code):
+    def create_completion(chat, node_url, unique_code):
 
         data = {
             "unique_code": unique_code,
@@ -148,7 +148,7 @@ class GPT4ModelMarket:
         return resp
 
     @staticmethod
-    def check_if_additional_tokens_necessary(self, total_output_tokens, chat) -> int:
+    def check_if_additional_tokens_necessary(total_output_tokens, chat) -> int:
         """
         Checks if the output tokens are enough for a given input (max 15 * input chars than max output tokens allowed) and
         returns how many additional output tokens are required for the generation to work
