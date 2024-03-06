@@ -1,9 +1,11 @@
 import os
+import time
+
 from ModelMarketSDK.ModelMarket import Mixtral8x7BModelMarketTestnet
 from dotenv import load_dotenv, find_dotenv
 
 """
-Simple demonstration of how easy it is to implement model markets!
+Simple demonstration of how easy it is to implement model markets with 'streams'!
 """
 
 
@@ -22,6 +24,13 @@ while cont:
         break
     else:
         chat.append({"role": "user", "content": text})
-        resp = model_market.generate(3000, chat)
-        print(resp)
-        chat.append({"role": "assistant", "content": resp})
+        node_url, result_code = model_market.generate_self_requesting(3000, chat)
+        full_resp = ""
+        done = False
+        while not done:
+            resp, done = model_market.get_next_output(node_url, result_code, full_resp)
+            full_resp += resp
+            print(resp, end="")
+            time.sleep(0.1)
+        chat.append({"role": "assistant", "content": full_resp})
+        print("\n")
