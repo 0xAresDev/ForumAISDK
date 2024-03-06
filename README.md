@@ -1,3 +1,5 @@
+NOTE: THIS IS NOT ACCURATE ANYMORE. WE ARE GOING TO UPDATE THE DOCS IN A FEW HOURS!
+
 Pre-alpha implementation of the ForumAI model market python sdk.
 We will turn this into a proper python package soon.
 
