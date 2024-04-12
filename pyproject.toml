@@ -7,8 +7,8 @@ build-backend = "setuptools.build_meta"
 ModelMarketSDK = ["*.json"]
 
 [project]
-name = "forumaisdk"
-version = "0.0.1"
+name = "forumaisdktest"
+version = "0.0.2"
 authors = [
   { name="ForumAISDK", email="forumai@github.com" },
 ]
