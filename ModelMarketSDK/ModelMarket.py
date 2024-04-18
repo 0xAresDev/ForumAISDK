@@ -24,7 +24,7 @@ class Mixtral8x7BModelMarketTestnet:
         data = json.load(f)
         f.close()
         abi = data["abi"]
-        self.llm_market = self.web3.eth.contract(address="0x54cc0Ea21A53ddaAbF774d1882702897BCe7Cd05", abi=abi)
+        self.llm_market = self.web3.eth.contract(address="0x4D26F6e4bb4dd9BC5f9E9Cb8714fFf324B57Dae9", abi=abi)
         self.private_key = private_key
         self.public_key = public_key
         script_dir = os.path.dirname(__file__)  # Get the script's directory
@@ -33,7 +33,7 @@ class Mixtral8x7BModelMarketTestnet:
         data = json.load(f)
         f.close()
         abi = data["abi"]
-        self.usdc = self.web3.eth.contract(address="0x15BA0717d7B1E627b8740Bb5589709afC6A99359", abi=abi)
+        self.usdc = self.web3.eth.contract(address="0xFab79D18EcC2076369FD7e7391d5F8C1A98beb3c", abi=abi)
         print("Initialized!")
 
     # returns all the nodes
