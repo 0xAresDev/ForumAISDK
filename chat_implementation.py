@@ -25,3 +25,14 @@ while cont:
         resp = model_market.generate(3000, chat)
         print(resp)
         chat.append({"role": "assistant", "content": resp})
+
+
+
+
+
+
+
+
+
+
+

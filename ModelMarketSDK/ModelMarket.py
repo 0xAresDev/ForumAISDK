@@ -24,7 +24,7 @@ class Mixtral8x7BModelMarketTestnet:
         data = json.load(f)
         f.close()
         abi = data["abi"]
-        self.llm_market = self.web3.eth.contract(address="0x4D26F6e4bb4dd9BC5f9E9Cb8714fFf324B57Dae9", abi=abi)
+        self.llm_market = self.web3.eth.contract(address="0x6b0934eeF1BeD7F3f53fE1E647096666286Df443", abi=abi)
         self.private_key = private_key
         self.public_key = public_key
         script_dir = os.path.dirname(__file__)  # Get the script's directory
@@ -33,7 +33,7 @@ class Mixtral8x7BModelMarketTestnet:
         data = json.load(f)
         f.close()
         abi = data["abi"]
-        self.usdc = self.web3.eth.contract(address="0xFab79D18EcC2076369FD7e7391d5F8C1A98beb3c", abi=abi)
+        self.usdc = self.web3.eth.contract(address="0xC1e229808C9A2Dc675d1E415C03FaD1C41C92b2b", abi=abi)
         print("Initialized!")
 
     # returns all the nodes
@@ -50,7 +50,7 @@ class Mixtral8x7BModelMarketTestnet:
 
     # mints the usdc token (note: only a testnet functionality)
     def mint_token(self):
-        unsent_minting_tx = self.usdc.functions.mint().build_transaction({
+        unsent_minting_tx = self.usdc.functions.mint(5*(10**18)).build_transaction({
             "from": self.public_key,
             "nonce": self.web3.eth.get_transaction_count(self.public_key),
             "gasPrice": self.web3.eth.gas_price,
