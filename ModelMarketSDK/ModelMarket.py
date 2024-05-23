@@ -44,9 +44,9 @@ class Mixtral8x7BModelMarketTestnet:
         self.account: LocalAccount = Account.from_key(private_key)
         print("Initialized!")
 
-    # returns all the nodes
+    # returns all the active nodes
     def get_hosts(self):
-        return self.llm_market.functions.getHosts().call()
+        return self.llm_market.functions.getActiveHosts().call()
 
     # checks if a node is currently paused
     def get_paused(self, host_address):
