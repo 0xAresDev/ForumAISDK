@@ -19,12 +19,12 @@ class Mixtral8x7BModelMarketTestnet:
         self.rpc = "https://testnet.skalenodes.com/v1/aware-fake-trim-testnet"
         self.web3 = Web3(Web3.HTTPProvider(self.rpc))
         script_dir = os.path.dirname(__file__)  # Get the script's directory
-        file_path = os.path.join(script_dir, "LLMMarket.json")
+        file_path = os.path.join(script_dir, "Mixtral8x7BMarket.json")
         f = open(file_path)
         data = json.load(f)
         f.close()
         abi = data["abi"]
-        self.llm_market = self.web3.eth.contract(address="0x6b0934eeF1BeD7F3f53fE1E647096666286Df443", abi=abi)
+        self.llm_market = self.web3.eth.contract(address="0xf40cDE66fB23f3787EAA5fcF679fbC0124D72B9D", abi=abi)
         self.private_key = private_key
         self.public_key = public_key
         script_dir = os.path.dirname(__file__)  # Get the script's directory
@@ -33,7 +33,7 @@ class Mixtral8x7BModelMarketTestnet:
         data = json.load(f)
         f.close()
         abi = data["abi"]
-        self.usdc = self.web3.eth.contract(address="0xC1e229808C9A2Dc675d1E415C03FaD1C41C92b2b", abi=abi)
+        self.usdc = self.web3.eth.contract(address="0xacd8B67448DC456D95ca9800DFe61e837C71bf4d", abi=abi)
         print("Initialized!")
 
     # returns all the nodes

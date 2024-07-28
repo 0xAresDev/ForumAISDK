@@ -14,7 +14,7 @@ load_dotenv(find_dotenv())
 
 model_market = Mixtral8x7BModelMarketTestnet(os.environ.get("PRIVATE_KEY"), os.environ.get("PUBLIC_KEY"))
 
-chat = [{"role": "system", "content": "You are a helpful assistant!"}]
+chat = [{"role": "system", "content": "You are a helpful assistant."}]
 cont = True
 
 while cont:
