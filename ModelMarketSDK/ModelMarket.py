@@ -8,15 +8,19 @@ import os
 import tiktoken
 
 
+class ForumAIError(Exception):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
 
 """
-Mixtral8x7BModelMarketTestnet allows developers to access the Mixtral8x7B model on the testnet
+Mixtral8x7BSaakuruMainnet allows developers to access the Mixtral8x7B model on the Saakuru mainnet
 """
-class Mixtral8x7BModelMarketTestnet:
+class Mixtral8x7BSaakuruMainnet:
 
     # Initialize the model market and make all the connections
     def __init__(self, private_key, public_key):
-        self.rpc = "https://testnet.skalenodes.com/v1/aware-fake-trim-testnet"
+        self.rpc = "https://rpc.saakuru.network"
         self.web3 = Web3(Web3.HTTPProvider(self.rpc))
         script_dir = os.path.dirname(__file__)  # Get the script's directory
         file_path = os.path.join(script_dir, "Mixtral8x7BMarket.json")
@@ -24,7 +28,7 @@ class Mixtral8x7BModelMarketTestnet:
         data = json.load(f)
         f.close()
         abi = data["abi"]
-        self.llm_market = self.web3.eth.contract(address="0xf40cDE66fB23f3787EAA5fcF679fbC0124D72B9D", abi=abi)
+        self.llm_market = self.web3.eth.contract(address="0x4d85595FEd453EFf0B93f865894aB1eFB59ab27C", abi=abi)
         self.private_key = private_key
         self.public_key = public_key
         script_dir = os.path.dirname(__file__)  # Get the script's directory
@@ -33,8 +37,7 @@ class Mixtral8x7BModelMarketTestnet:
         data = json.load(f)
         f.close()
         abi = data["abi"]
-        self.usdc = self.web3.eth.contract(address="0xacd8B67448DC456D95ca9800DFe61e837C71bf4d", abi=abi)
-        print("Initialized!")
+        self.usdc = self.web3.eth.contract(address="0x739222D8A9179fE05129C77a8fa354049c088CaA", abi=abi)
 
     # returns all the nodes
     def get_hosts(self):
@@ -48,32 +51,6 @@ class Mixtral8x7BModelMarketTestnet:
     def get_token_balance(self, address):
         return self.usdc.functions.balanceOf(address).call()
 
-    # mints the usdc token (note: only a testnet functionality)
-    def mint_token(self):
-        unsent_minting_tx = self.usdc.functions.mint(5*(10**18)).build_transaction({
-            "from": self.public_key,
-            "nonce": self.web3.eth.get_transaction_count(self.public_key),
-            "gasPrice": self.web3.eth.gas_price,
-        })
-        signed_tx = self.web3.eth.account.sign_transaction(unsent_minting_tx, private_key=self.private_key)
-
-        tx_hash = self.web3.eth.send_raw_transaction(signed_tx.rawTransaction)
-
-        self.web3.eth.wait_for_transaction_receipt(tx_hash)
-        tx_receipt = self.web3.eth.get_transaction_receipt(tx_hash)
-
-        unsent_token_approval_tx = self.usdc.functions.approve(self.llm_market.address, 5*(10**6)).build_transaction({
-            "from": self.public_key,
-            "nonce": self.web3.eth.get_transaction_count(self.public_key),
-            "gasPrice": self.web3.eth.gas_price,
-        })
-        signed_tx = self.web3.eth.account.sign_transaction(unsent_token_approval_tx, private_key=self.private_key)
-
-        tx_hash = self.web3.eth.send_raw_transaction(signed_tx.rawTransaction)
-
-        self.web3.eth.wait_for_transaction_receipt(tx_hash)
-
-        return tx_receipt
 
     # add a request on the chain
     def add_request_on_chain(self, unique_code, host_address, value):
@@ -126,25 +103,33 @@ class Mixtral8x7BModelMarketTestnet:
         resp = requests.get(node_url + "ai/get/" + result_code)
         return resp.json().get("content")
 
-    def generate(self, total_output_tokens, chat) -> str:
+    def pick_host(self, max_price):
+        max_price = max_price * 10**6
+        nodes = self.get_hosts()
+        sorted_nodes = sorted(nodes, key=lambda x: x[2])
+        node = None
+        c = 0
+        while not node:
+            temp = sorted_nodes[c]
+            if len(sorted_nodes) == c or temp[2] > max_price:
+                raise ForumAIError("No nodes active at this price!")
+            if not self.get_paused(temp[1]):
+                node = temp
+            c += 1
+        return node
+
+    def generate(self, total_output_tokens, chat, max_price) -> str:
         """
         Generates AI response based on the chat and with max total_output_tokens tokens.
 
         Args:
             total_output_tokens - int, max number of output tokens of AI response, also influences max number of input chars
             chat - list [{"role": "user", "content": "Lorem ipsum"}, ...], represents the input chat
+            max_price - float, max amount of usdc you are willing to spend per token
         Return:
             string - generated output
         """
-        node = None
-        c = 0
-        while not node:
-            temp = random.choice(self.get_hosts())
-            if not self.get_paused(temp[1]):
-                node = temp
-            c += 1
-            if c > 100:
-                return "No nodes active, try again later!"
+        node = self.pick_host(max_price)
 
         unique_code = self.generate_unique_code()
         result_code = self.create_completion(chat, node[0], unique_code)
@@ -152,44 +137,37 @@ class Mixtral8x7BModelMarketTestnet:
         inp = ""
         for c in chat:
             inp += c["content"]
-        value = node[2] * (total_output_tokens+(Mixtral8x7BModelMarketTestnet.num_tokens_from_string(inp, "cl100k_base") + len(chat)*4))
+        value = node[2] * (total_output_tokens+(Mixtral8x7BSaakuruMainnet.num_tokens_from_string(inp, "cl100k_base") + len(chat)*4))
+
         if self.get_token_balance(self.public_key) < value:
-            self.mint_token()
+            raise ForumAIError("Not enough USDC in wallet")
 
         self.add_request_on_chain(unique_code, node[1], value)
 
         c = 0
         resp = ""
         while len(resp) < 10 or resp[-3:] != "<e>":
-
             resp = self.get_completion(node[0], result_code)
             time.sleep(1)
             c += 1
             if c == 50:
-                return "Timeout!"
+                raise ForumAIError("Timeout!")
 
         return resp[3:-3]
 
-    def generate_self_requesting(self, total_output_tokens, chat) -> (str, str):
+    def generate_self_requesting(self, total_output_tokens, chat, max_price) -> (str, str):
         """
         Requests an AI response based on the chat and with max total_output_tokens tokens.
 
         Args:
             total_output_tokens - int, max number of output tokens of AI response, also influences max number of input chars
             chat - list [{"role": "user", "content": "Lorem ipsum"}, ...], represents the input chat
+            max_price - float, max amount of usdc you are willing to spend per token
         Return:
             string - node url
             string -result code
         """
-        node = None
-        c = 0
-        while not node:
-            temp = random.choice(self.get_hosts())
-            if not self.get_paused(temp[1]):
-                node = temp
-            c += 1
-            if c > 100:
-                return "No nodes active, try again later!"
+        node = self.pick_host(max_price)
 
         unique_code = self.generate_unique_code()
         result_code = self.create_completion(chat, node[0], unique_code)
@@ -198,9 +176,9 @@ class Mixtral8x7BModelMarketTestnet:
         for c in chat:
             inp += c["content"]
         value = node[2] * (total_output_tokens + (
-                    Mixtral8x7BModelMarketTestnet.num_tokens_from_string(inp, "cl100k_base") + len(chat) * 4))
+                    Mixtral8x7BSaakuruMainnet.num_tokens_from_string(inp, "cl100k_base") + len(chat) * 4))
         if self.get_token_balance(self.public_key) < value:
-            self.mint_token()
+            raise ForumAIError("Not enough USDC in wallet")
 
         self.add_request_on_chain(unique_code, node[1], value)
 

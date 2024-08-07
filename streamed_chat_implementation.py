@@ -1,7 +1,7 @@
 import os
 import time
 
-from ModelMarketSDK.ModelMarket import Mixtral8x7BModelMarketTestnet
+from ModelMarketSDK.ModelMarket import Mixtral8x7BSaakuruMainnet
 from dotenv import load_dotenv, find_dotenv
 
 """
@@ -12,7 +12,7 @@ Simple demonstration of how easy it is to implement model markets with 'streams'
 # load keys
 load_dotenv(find_dotenv())
 
-model_market = Mixtral8x7BModelMarketTestnet(os.environ.get("PRIVATE_KEY"), os.environ.get("PUBLIC_KEY"))
+model_market = Mixtral8x7BSaakuruMainnet(os.environ.get("PRIVATE_KEY"), os.environ.get("PUBLIC_KEY"))
 
 chat = [{"role": "system", "content": "You are a helpful assistant."}]
 cont = True
@@ -24,7 +24,7 @@ while cont:
         break
     else:
         chat.append({"role": "user", "content": text})
-        node_url, result_code = model_market.generate_self_requesting(3000, chat)
+        node_url, result_code = model_market.generate_self_requesting(400, chat, 0.000001)
         full_resp = ""
         done = False
         while not done:
