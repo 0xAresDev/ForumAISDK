@@ -1,7 +1,7 @@
 import os
 import time
 
-from ModelMarketSDK.ModelMarket import Mixtral8x7BSaakuruMainnet
+from ModelMarketSDK.ModelMarket import Mixtral8x7BSaakuruMainnet, Mixtral8x7BSkaleMainnet
 from dotenv import load_dotenv, find_dotenv
 
 """
@@ -12,7 +12,7 @@ Simple demonstration of how easy it is to implement model markets with 'streams'
 # load keys
 load_dotenv(find_dotenv())
 
-model_market = Mixtral8x7BSaakuruMainnet(os.environ.get("PRIVATE_KEY"), os.environ.get("PUBLIC_KEY"))
+model_market = Mixtral8x7BSkaleMainnet(os.environ.get("PRIVATE_KEY"), os.environ.get("PUBLIC_KEY"))
 
 chat = [{"role": "system", "content": "You are a helpful assistant."}]
 cont = True

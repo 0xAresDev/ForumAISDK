@@ -13,22 +13,18 @@ class ForumAIError(Exception):
         self.message = message
         super().__init__(self.message)
 
-"""
-Mixtral8x7BSaakuruMainnet allows developers to access the Mixtral8x7B model on the Saakuru mainnet
-"""
-class Mixtral8x7BSaakuruMainnet:
 
-    # Initialize the model market and make all the connections
-    def __init__(self, private_key, public_key):
-        self.rpc = "https://rpc.saakuru.network"
+class ModelMarketBase:
+    def __init__(self, private_key, public_key, rpc_url, model_market_contract_json, model_market_contract, usdc_contract):
+        self.rpc = rpc_url
         self.web3 = Web3(Web3.HTTPProvider(self.rpc))
         script_dir = os.path.dirname(__file__)  # Get the script's directory
-        file_path = os.path.join(script_dir, "Mixtral8x7BMarket.json")
+        file_path = os.path.join(script_dir, model_market_contract_json)
         f = open(file_path)
         data = json.load(f)
         f.close()
         abi = data["abi"]
-        self.llm_market = self.web3.eth.contract(address="0x4d85595FEd453EFf0B93f865894aB1eFB59ab27C", abi=abi)
+        self.llm_market = self.web3.eth.contract(address=model_market_contract, abi=abi)
         self.private_key = private_key
         self.public_key = public_key
         script_dir = os.path.dirname(__file__)  # Get the script's directory
@@ -37,7 +33,7 @@ class Mixtral8x7BSaakuruMainnet:
         data = json.load(f)
         f.close()
         abi = data["abi"]
-        self.usdc = self.web3.eth.contract(address="0x739222D8A9179fE05129C77a8fa354049c088CaA", abi=abi)
+        self.usdc = self.web3.eth.contract(address=usdc_contract, abi=abi)
 
     # returns all the nodes
     def get_hosts(self):
@@ -51,25 +47,27 @@ class Mixtral8x7BSaakuruMainnet:
     def get_token_balance(self, address):
         return self.usdc.functions.balanceOf(address).call()
 
-
     # add a request on the chain
     def add_request_on_chain(self, unique_code, host_address, value):
 
         allowance = self.usdc.functions.allowance(self.public_key, self.llm_market.address).call()
         if allowance < value:
             unsent_token_approval_tx = self.usdc.functions.approve(self.llm_market.address,
-                                                                   self.usdc.functions.balanceOf(self.public_key).call()).build_transaction({
+                                                                   self.usdc.functions.balanceOf(
+                                                                       self.public_key).call()).build_transaction({
                 "from": self.public_key,
                 "nonce": self.web3.eth.get_transaction_count(self.public_key),
                 "gasPrice": self.web3.eth.gas_price,
             })
-            signed_tx = self.web3.eth.account.sign_transaction(unsent_token_approval_tx, private_key=self.private_key)
+            signed_tx = self.web3.eth.account.sign_transaction(unsent_token_approval_tx,
+                                                               private_key=self.private_key)
 
             tx_hash = self.web3.eth.send_raw_transaction(signed_tx.rawTransaction)
 
             self.web3.eth.wait_for_transaction_receipt(tx_hash)
 
-        unsent_request_tx = self.llm_market.functions.addRequest(unique_code, host_address, value).build_transaction({
+        unsent_request_tx = self.llm_market.functions.addRequest(unique_code, host_address,
+                                                                 value).build_transaction({
             "from": self.public_key,
             "nonce": self.web3.eth.get_transaction_count(self.public_key),
             "gasPrice": self.web3.eth.gas_price,
@@ -104,7 +102,7 @@ class Mixtral8x7BSaakuruMainnet:
         return resp.json().get("content")
 
     def pick_host(self, max_price):
-        max_price = max_price * 10**6
+        max_price = max_price * 10 ** 6
         nodes = self.get_hosts()
         sorted_nodes = sorted(nodes, key=lambda x: x[2])
         node = None
@@ -137,7 +135,8 @@ class Mixtral8x7BSaakuruMainnet:
         inp = ""
         for c in chat:
             inp += c["content"]
-        value = node[2] * (total_output_tokens+(Mixtral8x7BSaakuruMainnet.num_tokens_from_string(inp, "cl100k_base") + len(chat)*4))
+        value = node[2] * (total_output_tokens + (
+                    Mixtral8x7BSaakuruMainnet.num_tokens_from_string(inp, "cl100k_base") + len(chat) * 4))
 
         if self.get_token_balance(self.public_key) < value:
             raise ForumAIError("Not enough USDC in wallet")
@@ -176,7 +175,7 @@ class Mixtral8x7BSaakuruMainnet:
         for c in chat:
             inp += c["content"]
         value = node[2] * (total_output_tokens + (
-                    Mixtral8x7BSaakuruMainnet.num_tokens_from_string(inp, "cl100k_base") + len(chat) * 4))
+                Mixtral8x7BSaakuruMainnet.num_tokens_from_string(inp, "cl100k_base") + len(chat) * 4))
         if self.get_token_balance(self.public_key) < value:
             raise ForumAIError("Not enough USDC in wallet")
 
@@ -199,7 +198,7 @@ class Mixtral8x7BSaakuruMainnet:
         """
         done = False
         resp = self.get_completion(node_url, result_code)
-        resp = resp[len(old_output)+3:]
+        resp = resp[len(old_output) + 3:]
         if resp[-3:] == "<e>":
             resp = resp[:-3]
             done = True
@@ -211,3 +210,23 @@ class Mixtral8x7BSaakuruMainnet:
         encoding = tiktoken.get_encoding(encoding_name)
         num_tokens = len(encoding.encode(string))
         return num_tokens
+
+"""
+Mixtral8x7BSaakuruMainnet allows developers to access the Mixtral8x7B model on the Saakuru mainnet
+"""
+class Mixtral8x7BSaakuruMainnet(ModelMarketBase):
+
+    # Initialize the model market and make all the connections
+    def __init__(self, private_key, public_key):
+        super().__init__(private_key, public_key, "https://rpc.saakuru.network", "Mixtral8x7BMarket.json", "0x4d85595FEd453EFf0B93f865894aB1eFB59ab27C", "0x739222D8A9179fE05129C77a8fa354049c088CaA")
+
+
+"""
+Mixtral8x7BSkaleTestnet allows developers to access the Mixtral8x7B model on the Skale testnet
+"""
+class Mixtral8x7BSkaleMainnet(ModelMarketBase):
+
+    # Initialize the model market and make all the connections
+    def __init__(self, private_key, public_key):
+        super().__init__(private_key, public_key, "https://testnet.skalenodes.com/v1/aware-fake-trim-testnet", "Mixtral8x7BMarket.json", "0x3B20052fF1115f80caDEEa76518d5BD594959bfa", "0x10A30e73Ab2da5328fC09B06443DDe3e656e82F4")
+
