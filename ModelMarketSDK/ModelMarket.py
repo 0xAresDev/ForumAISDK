@@ -229,4 +229,3 @@ class Mixtral8x7BSkaleTestnet(ModelMarketBase):
     # Initialize the model market and make all the connections
     def __init__(self, private_key, public_key):
         super().__init__(private_key, public_key, "https://testnet.skalenodes.com/v1/aware-fake-trim-testnet", "Mixtral8x7BMarket.json", "0x3B20052fF1115f80caDEEa76518d5BD594959bfa", "0x10A30e73Ab2da5328fC09B06443DDe3e656e82F4")
-
