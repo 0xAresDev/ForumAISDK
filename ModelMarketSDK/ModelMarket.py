@@ -224,7 +224,7 @@ class Mixtral8x7BSaakuruMainnet(ModelMarketBase):
 """
 Mixtral8x7BSkaleTestnet allows developers to access the Mixtral8x7B model on the Skale testnet
 """
-class Mixtral8x7BSkaleMainnet(ModelMarketBase):
+class Mixtral8x7BSkaleTestnet(ModelMarketBase):
 
     # Initialize the model market and make all the connections
     def __init__(self, private_key, public_key):
