@@ -229,3 +229,13 @@ class Mixtral8x7BSkaleTestnet(ModelMarketBase):
     # Initialize the model market and make all the connections
     def __init__(self, private_key, public_key):
         super().__init__(private_key, public_key, "https://testnet.skalenodes.com/v1/aware-fake-trim-testnet", "Mixtral8x7BMarket.json", "0x3B20052fF1115f80caDEEa76518d5BD594959bfa", "0x10A30e73Ab2da5328fC09B06443DDe3e656e82F4")
+
+"""
+Llama3_1_70B_Mainnet allows developers to access the Llama 3.1 model on the Saakuru mainnet
+"""
+class Llama3_1_70B_Mainnet(ModelMarketBase):
+
+    # Initialize the model market and make all the connections
+    def __init__(self, private_key, public_key):
+        super().__init__(private_key, public_key, "https://rpc.saakuru.network", "ForumAIModelMarket.json", "0x8127FE729611DdE302cdF3746d8034C6d84b8ff8", "0x739222D8A9179fE05129C77a8fa354049c088CaA")
+
