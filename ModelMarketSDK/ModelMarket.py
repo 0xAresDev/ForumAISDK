@@ -239,3 +239,12 @@ class Llama3_1_70B_Mainnet(ModelMarketBase):
     def __init__(self, private_key, public_key):
         super().__init__(private_key, public_key, "https://rpc.saakuru.network", "ForumAIModelMarket.json", "0x8127FE729611DdE302cdF3746d8034C6d84b8ff8", "0x739222D8A9179fE05129C77a8fa354049c088CaA")
 
+"""
+Llama3_1_70B_SKALE allows developers to access the Llama 3.1 model on the Skale Titan AI mainnet
+"""
+class Llama3_1_70B_SKALE(ModelMarketBase):
+
+    # Initialize the model market and make all the connections
+    def __init__(self, private_key, public_key):
+        super().__init__(private_key, public_key, "https://mainnet.skalenodes.com/v1/parallel-stormy-spica", "ForumAIModelMarketSKALE.json", "0x3B20052fF1115f80caDEEa76518d5BD594959bfa", "0x5fF56d3796Cc17104DE84365a00473232edddD9a")
+

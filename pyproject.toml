@@ -8,7 +8,7 @@ ModelMarketSDK = ["*.json"]
 
 [project]
 name = "forumaisdk"
-version = "0.0.5"
+version = "0.0.6"
 authors = [
   { name="ForumAISDK", email="forumai@github.com" },
 ]

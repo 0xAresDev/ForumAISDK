@@ -1,5 +1,5 @@
 import os
-from ModelMarketSDK.ModelMarket import Mixtral8x7BSaakuruMainnet, Llama3_1_70B_Mainnet
+from ModelMarketSDK.ModelMarket import Mixtral8x7BSaakuruMainnet, Llama3_1_70B_SKALE
 from dotenv import load_dotenv, find_dotenv
 
 """
@@ -10,7 +10,7 @@ Simple demonstration of how easy it is to implement model markets!
 # load keys
 load_dotenv(find_dotenv())
 
-model_market = Llama3_1_70B_Mainnet(os.environ.get("PRIVATE_KEY"), os.environ.get("PUBLIC_KEY"))
+model_market = Llama3_1_70B_SKALE(os.environ.get("PRIVATE_KEY"), os.environ.get("PUBLIC_KEY"))
 
 chat = [{"role": "system", "content": "You are a helpful assistant!"}]
 cont = True
